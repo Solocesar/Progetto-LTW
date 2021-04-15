@@ -92,3 +92,10 @@ nav .menu li a:hover{
   color: #1a1a1a;
   
 }
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+}
