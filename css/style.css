@@ -2,7 +2,8 @@ body {
   margin: 0px;
   padding: 0px;
   /* font-family: poppins; */
-  background-color: rgba(151, 151, 151, 0.03);
+  /* background-color: rgba(151, 151, 151, 0.03); */
+  background-color: #0F4C81 !important;
 }
 * {
   box-sizing: border-box;
