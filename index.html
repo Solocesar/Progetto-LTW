@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Film Share</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/lightslider.css">
     <!-- fav icon  da mettere-->
@@ -25,14 +26,17 @@
         <ul class="menu">
             <li><a href="#">Home</a></li>
             <li><a href="#">Films</a></li>
-            <li><a href="#">Membri</a></li>
+            <li><a href="membri.html">Membri</a></li>
             <li><a href="#">Login</a></li>
             <li><a href="#">Signup</a></li>
         </ul>
         <!-- Funzione di ricerca-->
-        <div class="search">
-            <input type="text" placeholder="Cerca cosa guardare stasera" />
-            </ul>
+
+        <div class="search-container">
+            <form action="/action_page.php">
+            <input type="text"  id="search" placeholder="Titolo Film"/>
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
         </div>
     </nav>
 
@@ -80,6 +84,9 @@
         </ul>
 
     </section>
+
+
+
     <!-- Script per lo slider-->
     <script>
         $(document).ready(function () {
@@ -92,6 +99,9 @@
             });
         });
     </script>
+
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <!-- <script src="js/main.js"></script> -->
     <footer>
         <p>© Film Share</p>
     </footer>
