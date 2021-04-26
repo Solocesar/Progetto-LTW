@@ -8,7 +8,7 @@ Progetto LTW Film Share
         - Recensioni  
         - Commenti  
         - Lista amici  
-    - TheMovieDB implementare uso API (se fattibile)  
+    - TheMovieDB implementare uso API 
     
 2. Grafica
     - Homepage  
