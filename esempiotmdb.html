@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <title>Using TheMovieDB</title>
-    <meta name="viewport" content="width=device-width">
-    <!-- API version 3 documentation: 
-        https://developers.themoviedb.org/3/search
-        https://developers.themoviedb.org/3/movies
-    -->
+    <title>Film Share</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lightslider.css">
+    <!-- fav icon  da mettere-->
 </head>
+
+<script src="js/jquery-3.6.0.js"></script>
 <body>
-    <h1>Using TheMovieDB.org API v3</h1>
+   <!--barra navigazione-->
+   <nav>
+    <!--logo--------------->
+    <a href="#" class="logo">
+        <img src="images/logo.png" />
+    </a>
+    <!-- menu -->
+    <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Films</a></li>
+        <li><a href="membri.html">Membri</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Signup</a></li>
+    </ul>
+    <!-- Funzione di ricerca-->
+
+    <div class="search-container">
+        
+        <input type="text"  id="search" placeholder="Titolo Film"/>
+        <button type="submit" onclick="getInput()"><i class="fa fa-search"></i></button>
+    
+    </div>
+</nav>
     <p><img src="https://image.tmdb.org/t/p/w185//xfYMQNApIIh8KhpNVtG1XRz0ZAp.jpg" alt="Jaws"/></p>
     <div id="output">
         <!-- output will go here -->
@@ -34,24 +58,26 @@
         let baseImageURL = null;
         let CesarAPI ='7d8a0acbac9d46ce5f7a8ee14eb40411';
         
-        let getConfig = function () {
-            let url = "".concat(baseURL, 'configuration?api_key=', CesarAPI); 
-            fetch(url)
-            .then((result)=>{
-                return result.json();
-            })
-            .then((data)=>{
-                baseImageURL = data.images.secure_base_url;
-                configData = data.images;
-                console.log('config:', data);
-                console.log('config fetched');
-                runSearch('upside down magic')
-            })
-            .catch(function(err){
-                alert(err);
-            });
+        // let getConfig = function () {
+        //     let url = "".concat(baseURL, 'configuration?api_key=', CesarAPI); 
+        //     fetch(url)
+        //     .then((result)=>{
+        //         return result.json();
+        //     })
+        //     .then((data)=>{
+        //         baseImageURL = data.images.secure_base_url;
+        //         configData = data.images;
+        //         console.log('config:', data);
+        //         console.log('config fetched');
+        //         runSearch('upside down magic')
+        //     })
+        //     .catch(function(err){
+        //         alert(err);
+        //     });
+        // }
+        function getInput(){
+            var input = document.getElementById("search")
         }
-        
         let runSearch = function (keyword) {
             let url = ''.concat(baseURL, 'search/movie?api_key=', CesarAPI, '&query=', keyword);
             fetch(url)
@@ -64,7 +90,7 @@
             })
         }
         
-        document.addEventListener('DOMContentLoaded', getConfig);
+        document.addEventListener('DOMContentLoaded', runSearch('upside down magic'));
         /*******************************
         SAMPLE SEARCH RESULTS DATA
         { "vote_count": 2762, 
