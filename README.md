@@ -9,9 +9,7 @@ Progetto LTW Film Share
         - Commenti  
         - Lista amici  
     - TheMovieDB implementare uso API (se fattibile)  
-
-
-Grafica
+    
 2. Grafica
     - Homepage  
     - Nav bar sempre in alto  
