@@ -1,13 +1,27 @@
-body {
-  margin: 0px;
-  padding: 0px;
-  /* font-family: poppins; */
-  /* background-color: rgba(151, 151, 151, 0.03); */
-  background-color: #0F4C81 !important;
+.contenitoreFilm {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  font-family: poppins;
+  background-color: rgba(151, 151, 151, 0.03);
+  /* background-color: #0F4C81 ; */
 }
-* {
-  box-sizing: border-box;
+section {
+display: flex;
+width: 100%;
+overflow-x: auto ;
 }
+section img{
+  transition: 250ms all;
+
+}
+img:hover{
+  margin-left: 0.40px;
+  transform:scale(1.2);
+  cursor: pointer;
+
+}
+
 ul {
   list-style: none;
 }
