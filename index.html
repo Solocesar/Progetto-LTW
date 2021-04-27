@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <title>Film Share</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <script src="https://kit.fontawesome.com/6d65c527da.js" crossorigin="anonymous"></script>    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/6d65c527da.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/lightslider.css">
     <!-- fav icon  da mettere-->
 </head>
@@ -23,8 +24,8 @@
         </a>
         <!-- menu -->
         <ul class="menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Films</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="esempiotmdb.html">Films</a></li>
             <li><a href="membri.html">Membri</a></li>
             <li><a href="#">Login</a></li>
             <li><a href="#">Signup</a></li>
@@ -32,9 +33,10 @@
         <!-- Funzione di ricerca-->
 
         <div class="search-container">
-            
-            <input type="text"  id="search" placeholder="Titolo Film"/>
-            <button type="submit"><i class="fas fa-search"></i></button>
+            <form>
+                <input type="text" id="searchText" placeholder="Titolo Film" />
+                <button type="submit" id="search"><i class="fas fa-search"></i></button>
+            </form>
         </div>
     </nav>
     <nav>
@@ -80,28 +82,28 @@
             </li>
         </ul>
 
-    </section>
+        </section>
 
 
 
-    <!-- Script per lo slider-->
-    <script>
-        $(document).ready(function () {
-            $('#autoWidth').lightSlider({
-                autoWidth: true,
-                loop: true,
-                onSliderLoad: function () {
-                    $('#autoWidth').removeClass('cS-hidden');
-                }
+        <!-- Script per lo slider-->
+        <script>
+            $(document).ready(function () {
+                $('#autoWidth').lightSlider({
+                    autoWidth: true,
+                    loop: true,
+                    onSliderLoad: function () {
+                        $('#autoWidth').removeClass('cS-hidden');
+                    }
+                });
             });
-        });
-    </script>
+        </script>
 
-    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
-    <!-- <script src="js/main.js"></script> -->
-    <footer>
-        <p>© Film Share</p>
-    </footer>
+        <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+        <!-- <script src="js/main.js"></script> -->
+        <footer>
+            <p>© Film Share</p>
+        </footer>
 </body>
 
 </html>
