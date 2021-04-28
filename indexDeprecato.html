@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Film Share</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://kit.fontawesome.com/6d65c527da.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lightslider.css">
+    <!-- fav icon  da mettere-->
+</head>
+
+<script src="js/jquery-3.6.0.js"></script>
+<script src="js/lightslider.js"></script>
+
+<body>
+
+    <!--barra navigazione-->
+    <nav>
+        <!--logo--------------->
+        <a href="#" class="logo">
+            <img src="images/logo.png" />
+        </a>
+        <!-- menu -->
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="esempiotmdb.html">Films</a></li>
+            <li><a href="membri.html">Membri</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Signup</a></li>
+        </ul>
+        <!-- Funzione di ricerca-->
+
+        <div class="search-container">
+            <form>
+                <input type="text" id="searchText" placeholder="Titolo Film" />
+                <button type="submit" id="search"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </nav>
+    
+        <!--Slider Film-->
+        <!-- Heading-->
+        <h1 class="showcase-heading">Film Popolari</h1>
+
+        <ul id="autoWidth" class="cs-hidden">
+            <!-- box 1-->
+            <li class="item-a">
+                <!-- showcase-box-->
+                <div class="showcase-box">
+                    <img src="images/s-1.jpg" />
+                </div>
+            </li>
+            <!-- box 2-->
+            <li class="item-b">
+                <!-- showcase-box-->
+                <div class="showcase-box">
+                    <img src="images/s-2.jpg" />
+                </div>
+            </li>
+            <!-- box 2-->
+            <li class="item-c">
+                <!-- showcase-box-->
+                <div class="showcase-box">
+                    <img src="images/s-3.jpg" />
+                </div>
+            </li>
+            <!-- box 4-->
+            <li class="item-d">
+                <!-- showcase-box-->
+                <div class="showcase-box">
+                    <img src="images/s-4.jpg" />
+                </div>
+            </li>
+            <!-- box 5-->
+            <li class="item-e">
+                <!-- showcase-box-->
+                <div class="showcase-box">
+                    <img src="images/s-2.jpg" />
+                </div>
+            </li>
+        </ul>
+
+        </section>
+
+
+
+        <!-- Script per lo slider-->
+        <script>
+            $(document).ready(function () {
+                $('#autoWidth').lightSlider({
+                    autoWidth: true,
+                    loop: true,
+                    onSliderLoad: function () {
+                        $('#autoWidth').removeClass('cS-hidden');
+                    }
+                });
+            });
+        </script>
+
+        <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+        <!-- <script src="js/main.js"></script> -->
+        <footer>
+            <p>© Film Share</p>
+        </footer>
+</body>
+
+</html>

@@ -26,7 +26,7 @@ function createMovieContainer(movies) {
     <section class="section">
     ${movieSection(movies)}
     </section>
-    <div class= "content">
+    <div class= "content content display">
       <p id="content-close">X</p>
       </div>
   `;
@@ -36,7 +36,7 @@ function createMovieContainer(movies) {
 
 function renderSearchMovies(data) {
   // array dei film 
-  ContenitoreFilm.innerHTML='';
+  ContenitoreFilm.innerHTML='';  // pulisce il container dei film 
   const movies = data.results;
   const movieBlock = createMovieContainer(movies);
   ContenitoreFilm.appendChild(movieBlock);
@@ -55,6 +55,19 @@ buttonElement.onclick = function (event) {
     .catch((error) => {
       console.log("Error: ", error);
     });
-
+  searchText.value='';
   console.log("Value:", value);
 };
+
+// Event delegation
+// click in qualunque  parte del documento e se il target e' un img
+
+document.onclick = function(event){
+  const target = event.target;
+  if (target.tagName.toLowerCase() === 'img'){
+    console.log('hello')
+    const section = event.target.parentElement;
+    const content = section.nextElementSibling;
+    content.classList.add('content-display')
+  }
+}

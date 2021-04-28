@@ -23,3 +23,11 @@ Progetto LTW Film Share
     - Sfondo    
     - Utenti?
     - Ricerca?  
+
+3. DB
+    - Utente
+    - Email
+    - password
+    - fotoProfilo
+    - MappaRecensioni [id -> recensione] 
+    - ListaAmici [email]
