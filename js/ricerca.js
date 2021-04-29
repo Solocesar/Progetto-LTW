@@ -18,26 +18,41 @@ function handleError() {
 
 // sezione di un singolo film
 function movieSection(movies) {
-  return movies.map((movie) => {
-    if (movie.poster_path) {
-      return `<img src=${imageUrl + movie.poster_path} data-movie-id=${movie.id}/>`;
-    }
+  const section = document.createElement('section');
+  section.classList = 'section';
+  movies.map((movie) => {
+    const img = document.createElement('img');
+    img.src = imageUrl + movie.poster_path;
+    // img['data-movie-id'] = imageUrl + movie.poster_path;
+    img.setAttribute('data-movie-id',movie.id);
+
+    section.appendChild(img);
+
   })
+  return section;
 }
 
 function createMovieContainer(movies, title = '') {
+
   const movieElement = document.createElement('div');
   movieElement.setAttribute('class', 'movie');
 
-  const movietemplate = `
-  <h2>${title}</h2>
-    <section class="section">
-    ${movieSection(movies)}
-    </section>
-    <div class= "content ">
-      <p id="content-close">ⓧ</p>
-      </div>`;
-  movieElement.innerHTML = movietemplate;
+  //crea la sezione per il titolo 
+  const header = document.createElement('h2');
+  header.innerHTML = title;
+
+  const content = document.createElement('div');
+  content.classList = 'content';
+
+  const contentClose = `<p id="content-close">X</p>`;
+
+  content.innerHTML = contentClose;
+
+  const section = movieSection(movies);
+
+  movieElement.appendChild(header);
+  movieElement.appendChild(section);
+  movieElement.appendChild(content);
   return movieElement;
 }
 
@@ -54,7 +69,7 @@ function renderSearchMovies(data) {
 function renderMovies(data) {
   // array dei film 
   const movies = data.results;
-  const movieBlock = createMovieContainer(movies,this.title);
+  const movieBlock = createMovieContainer(movies, this.title);
   popularMovies.appendChild(movieBlock);
 }
 

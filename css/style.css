@@ -33,16 +33,21 @@ ul {
 
 nav {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center;
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  /* border: 1px solid rgba(0, 0, 0, 0.04); */
   background-color: #97caEF;
 }
 
-.logo img {
-  height: 150px;
+h2 {
+  background-color: #97caEF;
+  text-align: center;
+  padding: 10px;
+
 }
+
+/* nav orizzontale */
 
 nav .menu {
   display: flex;

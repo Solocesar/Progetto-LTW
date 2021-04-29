@@ -27,6 +27,8 @@ function searchMovie(value) {
 function searchUpcomingMovies() {
     const path = '/movie/upcoming'
     const url = generateUrl(path);
+
+    //la funzione bind serve ad aggiungere un parametro ad una funzione gia dichiarata 
     const render = renderMovies.bind({ title: 'In Arrivo' })
     requestMovies(url, render, handleError);
 }
