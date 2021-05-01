@@ -9,6 +9,7 @@ function generateUrl(path) {
     return url;
 }
 
+
 function requestMovies(url, onComplete, OnError) {
     fetch(url)
         .then((res) => res.json())
@@ -23,7 +24,12 @@ function searchMovie(value) {
     requestMovies(url, renderSearchMovies, handleError);
 }
 
+function searchInfoMovie(value){
+    const path ='/movie/' + value;
+    const url = generateUrl(path) ; //generat path con id e api alla fine
 
+    requestMovies(url,getMovie,handleError);
+}   
 function searchUpcomingMovies() {
     const path = '/movie/upcoming'
     const url = generateUrl(path);
@@ -34,7 +40,7 @@ function searchUpcomingMovies() {
 }
 
 function searchPopularMovies() {
-    const path = '/movie/popular'
+    const path = '/movie/popular';
     const url = generateUrl(path);
     const render = renderMovies.bind({ title: 'Popolari' })
     requestMovies(url, render, handleError);

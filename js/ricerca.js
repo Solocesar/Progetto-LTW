@@ -7,13 +7,89 @@ const popularMovies = document.querySelector("#popularMovies");
 
 
 
+const genres = [
+  {
+    "id": 28,
+    "name": "Action"
+  },
+  {
+    "id": 12,
+    "name": "Adventure"
+  },
+  {
+    "id": 16,
+    "name": "Animation"
+  },
+  {
+    "id": 35,
+    "name": "Comedy"
+  },
+  {
+    "id": 80,
+    "name": "Crime"
+  },
+  {
+    "id": 99,
+    "name": "Documentary"
+  },
+  {
+    "id": 18,
+    "name": "Drama"
+  },
+  {
+    "id": 10751,
+    "name": "Family"
+  },
+  {
+    "id": 14,
+    "name": "Fantasy"
+  },
+  {
+    "id": 36,
+    "name": "History"
+  },
+  {
+    "id": 27,
+    "name": "Horror"
+  },
+  {
+    "id": 10402,
+    "name": "Music"
+  },
+  {
+    "id": 9648,
+    "name": "Mystery"
+  },
+  {
+    "id": 10749,
+    "name": "Romance"
+  },
+  {
+    "id": 878,
+    "name": "Science Fiction"
+  },
+  {
+    "id": 10770,
+    "name": "TV Movie"
+  },
+  {
+    "id": 53,
+    "name": "Thriller"
+  },
+  {
+    "id": 10752,
+    "name": "War"
+  },
+  {
+    "id": 37,
+    "name": "Western"
+  }
+]
 
-
-function handleError() {
-  console.log(error);
+function handleError(error) {
+  console.log('Error: ', error.message);
+  alert(error.message || 'Internal Server');
 }
-
-
 
 
 // sezione di un singolo film
@@ -23,11 +99,8 @@ function movieSection(movies) {
   movies.map((movie) => {
     const img = document.createElement('img');
     img.src = imageUrl + movie.poster_path;
-    // img['data-movie-id'] = imageUrl + movie.poster_path;
-    img.setAttribute('data-movie-id',movie.id);
-
+    img.setAttribute('data-movie-id', movie.id);
     section.appendChild(img);
-
   })
   return section;
 }
@@ -44,10 +117,6 @@ function createMovieContainer(movies, title = '') {
   const content = document.createElement('div');
   content.classList = 'content';
 
-  const contentClose = `<p id="content-close">X</p>`;
-
-  content.innerHTML = contentClose;
-
   const section = movieSection(movies);
 
   movieElement.appendChild(header);
@@ -62,7 +131,7 @@ function renderSearchMovies(data) {
   const movies = data.results;
   const movieBlock = createMovieContainer(movies);
   ContenitoreFilm.appendChild(movieBlock);
-  console.log("Data: ", data);
+  // console.log("Data: ", data);
 }
 
 // per i film popolari ,in arrivo , ecc
@@ -79,64 +148,37 @@ buttonElement.onclick = function (event) {
   searchMovie(value);
 
   searchText.value = '';
-  console.log("Value:", value);
+  // console.log("Value:", value);
 };
 
 // create iframe
-function createIframe(video) {
-  const iframe = document.createElement('iframe');
-  iframe.src = `https://www.youtube.com/embed/${video.key}`
-  iframe.width = 360;
-  iframe.height = 315;
-  iframe.allowFullscreen = true;
-  return iframe;
-}
-// create video template
-function createVideoTemplate(data, content) {
-  content.innerHTML = '<p id="content-close">X</p>'
-  const videos = data.results;
-  const length = videos.length > 4 ? 4 : videos.length; // lunghezza video 
-  const iframeContainer = document.createElement('div');
 
-  for (let i = 0; i < length; i++) {
-    const video = videos[i] // singolo video
-    const iframe = createIframe(video);
-    iframeContainer.appendChild(iframe);
-    content.appendChild(iframeContainer);
-  }
-}
-// Event delegation
-// click in qualunque  parte del documento e se il target e' un img
-
+// }
 document.onclick = function (event) {
+  event.preventDefault();
   const target = event.target;
   if (target.tagName.toLowerCase() === 'img') {
     const movieId = target.dataset.movieId;
     console.log('MovieID:', movieId);
-    const section = event.target.parentElement;
-    const content = section.nextElementSibling;
-    content.classList.add('content-display')
+    movieSelected(movieId);
 
-    const path = `/movie/${movieId}/videos`
-    const url = generateUrl(path);
-    //fetch movies
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => createVideoTemplate(data, content)
-
-      )
-      .catch((error) => {
-        console.log("Error: ", error);
-      });
   }
-  console.log(target.tagName);
-  if (target.id === 'content-close') {
-    const content = target.parentElement;
-    content.classList.remove('content-display');
-    console.log('click');
-  }
-
 }
+
 
 searchUpcomingMovies();
 searchPopularMovies();
+
+
+
+// js per la pagina di un unico film 
+
+function movieSelected(movieId) {
+  // la session storage si cancella appena si chiude la tab / pagina.
+  // console.log(movieId);
+  sessionStorage.setItem('movieId', movieId);
+  window.location = 'film.html'
+  return false;
+}
+
+
