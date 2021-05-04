@@ -1,73 +1,92 @@
 // Prendere elementi dal DOM
 
-const CesarAPI = '7d8a0acbac9d46ce5f7a8ee14eb40411';
-const url = 'https://api.themoviedb.org/3/search/movie?api_key=7d8a0acbac9d46ce5f7a8ee14eb40411';
-const imageUrl = 'https://image.tmdb.org/t/p/w300/'
-
 const buttonElement = document.querySelector("#search");
 const searchText = document.querySelector("#searchText");
 const ContenitoreFilm = document.querySelector("#ContenitoreFilm");
+const popularMovies = document.querySelector("#popularMovies");
+
+
+function handleError(error) {
+  console.log('Error: ', error.message);
+  alert(error.message || 'Internal Server');
+}
 
 
 // sezione di un singolo film
 function movieSection(movies) {
-  return movies.map((movie) => {
-    if (movie.poster_path) {
-      return `<img src=${imageUrl + movie.poster_path} data-movie-id=${movie.id}/>`;
-    }
+  const section = document.createElement('section');
+  section.classList = 'section';
+  movies.map((movie) => {
+    const img = document.createElement('img');
+    img.src = imageUrl + movie.poster_path;
+    img.setAttribute('data-movie-id', movie.id);
+    img.setAttribute('onclick',`movieSelected(${movie.id})`)
+    section.appendChild(img);
   })
+  return section;
 }
 
-function createMovieContainer(movies) {
+function createMovieContainer(movies, title = '') {
+
   const movieElement = document.createElement('div');
   movieElement.setAttribute('class', 'movie');
 
-  const movietemplate = `
-    <section class="section">
-    ${movieSection(movies)}
-    </section>
-    <div class= "content content display">
-      <p id="content-close">X</p>
-      </div>
-  `;
-  movieElement.innerHTML = movietemplate;
+  //crea la sezione per il titolo 
+  const header = document.createElement('h2');
+  header.innerHTML = title;
+
+  const content = document.createElement('div');
+  content.classList = 'content';
+
+  const section = movieSection(movies);
+
+  movieElement.appendChild(header);
+  movieElement.appendChild(section);
+  movieElement.appendChild(content);
   return movieElement;
 }
 
 function renderSearchMovies(data) {
   // array dei film 
-  ContenitoreFilm.innerHTML='';  // pulisce il container dei film 
+  ContenitoreFilm.innerHTML = '';  // pulisce il container dei film 
   const movies = data.results;
-  const movieBlock = createMovieContainer(movies);
+  const movieBlock = createMovieContainer(movies,'Risultati');
   ContenitoreFilm.appendChild(movieBlock);
-  console.log("Data: ", data);
+  // console.log("Data: ", data);
+}
+
+// per i film popolari ,in arrivo , ecc
+function renderMovies(data) {
+  // array dei film 
+  const movies = data.results;
+  const movieBlock = createMovieContainer(movies, this.title);
+  popularMovies.appendChild(movieBlock);
 }
 
 buttonElement.onclick = function (event) {
   event.preventDefault();
   const value = searchText.value;
+  searchMovie(value);
 
-  const newUrl = url + '&query=' + value;
-
-  fetch(newUrl)
-    .then((res) => res.json())
-    .then(renderSearchMovies)
-    .catch((error) => {
-      console.log("Error: ", error);
-    });
-  searchText.value='';
-  console.log("Value:", value);
+  searchText.value = '';
+  // console.log("Value:", value);
 };
 
-// Event delegation
-// click in qualunque  parte del documento e se il target e' un img
 
-document.onclick = function(event){
-  const target = event.target;
-  if (target.tagName.toLowerCase() === 'img'){
-    console.log('hello')
-    const section = event.target.parentElement;
-    const content = section.nextElementSibling;
-    content.classList.add('content-display')
-  }
+//Carica le sezioni di film popolari e in arrivo 
+searchUpcomingMovies();
+searchPopularMovies();
+
+
+
+// js per la pagina di un unico film 
+
+function movieSelected(movieId) {
+  // la session storage si cancella appena si chiude la tab / pagina.
+  // console.log(movieId);
+  sessionStorage.setItem('movieId', movieId);
+  window.location = 'film.html'
+  return false;
 }
+
+
