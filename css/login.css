@@ -1,0 +1,92 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    line-height: 1.5;
+    color: black;
+    background-color: darkcyan;
+    /*
+    background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20190828/pngtree-blue-and-pink-smoke-background-png-and-psd-download-image_308386.jpg");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+
+    */
+}
+
+.container{
+    border-radius: 3%;
+    background-color: white;
+    position: absolute;
+    top: 25%;
+    left: 45%;
+    margin: -100px 0 0 -150px;
+    width: 400px;
+    height: 620px;
+    text-align: center;
+}
+
+.container img{
+    border-radius: 4%;
+    width: 350;
+    height: 250
+}
+
+p{
+    font-family:  Typewriter, serif;
+    font-size: 25px;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+
+input{
+    font-size: 16px;
+    padding: 15px 10px;
+    width: 300px;
+    border-radius: 5px;
+    background-color: gainsboro;
+}
+
+.error{
+    font-size: 12px;
+    color: red;    
+}
+
+
+.sub{
+    width: 100px;
+    margin: 20px 0px;
+    font-size: 12px;
+    background-color: sandybrown;
+
+}
+.main-nav{
+    border-radius: 4px;
+    height: 80px;
+    font-size: 16px;
+}
+
+ul{
+list-style: none;
+}
+
+a{
+color: black;
+text-decoration: none;
+
+}
+
+
+
+.main-nav ul li a{
+padding-bottom: 2px;
+}
+
+.main-nav ul li a:hover{
+border-bottom: 2px solid chocolate;
+}

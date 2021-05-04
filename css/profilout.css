@@ -76,7 +76,12 @@ a{
   margin-bottom: 40px;
   margin-top: 20px;
 }
-
+.box img{
+  width: 150px;
+  max-width: 150px;
+  height: 200px;
+  
+}
 .info-film{
   padding-left: 30px;
 }
