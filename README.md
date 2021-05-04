@@ -31,3 +31,33 @@ Progetto LTW Film Share
     - fotoProfilo
     - MappaRecensioni [id -> recensione] 
     - ListaAmici [email]
+
+Cose da fare 
+- Homepage con Vista recensioni .
+
+- ID utenti
+- film.html 
+    - Tasto per i trailer da nascondere
+    - Tasto per le recensioni che apre la Card
+    - Card recensione , con punteggio ,timestamp 
+
+- Lista Amici, 
+
+<!-- ------------------ -->
+Tabelle 
+Utente:
+	id 
+	email
+	nickname
+	password
+	img url
+	List[id.recensione]
+
+Tabella Recensioni:
+	id
+	timestamp
+	recensione stringa
+	voto
+	film.id
+	utente.id
+    Like

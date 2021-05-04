@@ -84,6 +84,7 @@ searchPopularMovies();
 function movieSelected(movieId) {
   // la session storage si cancella appena si chiude la tab / pagina.
   // console.log(movieId);
+  
   sessionStorage.setItem('movieId', movieId);
   window.location = 'film.html'
   return false;

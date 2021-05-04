@@ -14,7 +14,6 @@ function getMovie() {
       // prende tuitti i generi e ne crea una stringa 
       for (i = 0; i < movie.genres.length; i++) {
         genres += movie.genres[i].name+' ';
-
       }
       // movie.genres.forEach(element => {
       //   genres+'ciao';
