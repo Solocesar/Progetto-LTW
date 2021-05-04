@@ -72,32 +72,7 @@ buttonElement.onclick = function (event) {
   // console.log("Value:", value);
 };
 
-// create iframe
 
-// }
-// document.onclick = function (event) {
-//   event.preventDefault();
-//   const target = event.target;
-//   // target.c
-//   if (target.tagName.toLowerCase() === 'img') {
-//     const movieId = target.dataset.movieId;
-//     console.log('MovieID:', movieId);
-//     movieSelected(movieId);
-
-//   }
-// }
-// $(".slider").onclick = function (event) {
-//   event.preventDefault();
-//   const target = event.target;
-//   console.log(target);
-//   // target.c
-//   if (target.tagName.toLowerCase() === 'img') {
-//     const movieId = target.dataset.movieId;
-//     console.log('MovieID:', movieId);
-//     movieSelected(movieId);
-
-//   }
-// }
 //Carica le sezioni di film popolari e in arrivo 
 searchUpcomingMovies();
 searchPopularMovies();
