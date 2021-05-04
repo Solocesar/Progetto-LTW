@@ -1,54 +1,66 @@
 <!DOCTYPE html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Film Share</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <script src="https://kit.fontawesome.com/6d65c527da.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
-    
-    <!-- fav icon  da mettere-->
+  <meta charset="UTF-8">
+  <title>Film Share</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://kit.fontawesome.com/6d65c527da.js" crossorigin="anonymous"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- fav icon  da mettere-->
 </head>
 
-<script src="js/jquery-3.6.0.js"></script>
 
 <body>
-    <!--barra navigazione-->
-    <nav>
-        <!--logo--------------->
-        
-        <!-- menu -->
-        <ul class="menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Films</a></li>
-            <li><a href="profilout.html">Membri</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Signup</a></li>
-        </ul>
-        <!-- Funzione di ricerca-->
 
-        <div class="search-container">
-            <form>
-                <input type="text" id="searchText" placeholder="Titolo Film" />
-                <button type="submit" id="search"><i class="fas fa-search"></i></button>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #97caEF;">
+    <div class="container-fluid">
+        <!-- logo -->
+        <a class="navbar-brand" href="#"> <img src="images/filmshare-02.png" alt="" width="40" height="24"></a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarCollapse" >
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://www.google.com/">Profilo</a></li>
+                <!-- <li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a></li> -->
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" id="searchText" type="search" placeholder="Titolo Film" aria-label="Search" required/>
+                <button class="btn btn-outline-success" id="search" type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- Contenitore per la ricerca che averra dinamicamente -->
-    
-    <div id=ContenitoreFilm></div>
-    <div id=popularMovies></div>
+  <!-- Contenitore per la ricerca che averra dinamicamente -->
 
-    <!-- script per fare la ricerca -->
-    <script src="js/apiTransaction.js"></script>
-    <script src="js/ricerca.js"></script>
+  <div id=ContenitoreFilm class="slider"></div>
+  <div id=popularMovies class="slider"></div>
 
-    <!-- Footer  -->
-    <footer>
-        <p>© Film Share</p>
-    </footer>
+
+  <!-- librerie -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- script per fare la ricerca -->
+  <script src="js/apiTransaction.js"></script>
+  <script src="js/ricerca.js"></script>
+
+
+  <!-- Footer  -->
+  <footer>
+    <p>© Film Share</p>
+  </footer>
 </body>
 
 </html>

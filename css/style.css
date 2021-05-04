@@ -1,3 +1,7 @@
+/* sposta giu il contenuto per non fare overlap sulle sezioni */
+body{
+  padding-top: 65px;
+}
 .contenitoreFilm {
   display: flex;
   width: 100%;
@@ -27,80 +31,15 @@ img:hover {
   cursor: pointer;
 }
 
-ul {
-  list-style: none;
-}
-
-nav {
-  display: flex;
-  /* justify-content: space-around; */
-  align-items: center;
-  width: 100%;
-  /* border: 1px solid rgba(0, 0, 0, 0.04); */
-  background-color: #97caEF;
-}
 
 h2 {
   background-color: #97caEF;
   text-align: center;
   padding: 10px;
-
+  
 }
 
-/* nav orizzontale */
 
-nav .menu {
-  display: flex;
-}
-
-nav .menu li a {
-  height: 40;
-  line-height: 43px;
-  margin: 0px;
-  padding: 0px 22px;
-  display: flex;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: #585858;
-  letter-spacing: 1px;
-}
-
-nav .search-container {
-  float: right;
-}
-
-nav input[type=text] {
-  padding: 6px;
-  margin-top: 8px;
-  font-size: 17px;
-  border: 20px;
-  border-radius: 20px;
-  background-color: rgb(255, 255, 255);
-}
-
-nav .search-container button {
-  float: right;
-  padding: 6px 10px;
-  border-radius: 20px;
-  margin-top: 8px;
-  margin-right: 16px;
-  background: #ddd;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
-}
-
-nav .search-container button:hover {
-  background: #55bcc9;
-}
-
-nav .menu li a:hover {
-  background-color: #242424;
-  color: #ffffff;
-  box-shadow: 5px 10px 30px rgba(53, 53, 53, 0.1);
-  transition: all ease 0.2s;
-}
 
 .content {
   border: 1px solid grey;

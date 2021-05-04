@@ -15,24 +15,26 @@
 
 <body>
   <!--barra navigazione-->
-  <nav>
-    <!--logo--------------->
-
-    <!-- menu -->
-    <ul class="menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#">Films</a></li>
-      <li><a href="profilout.html">Membri</a></li>
-      <li><a href="#">Login</a></li>
-      <li><a href="#">Signup</a></li>
-    </ul>
-    <!-- Funzione di ricerca-->
-
-    <div class="search-container">
-      <form>
-        <input type="text" id="searchText" placeholder="Titolo Film" />
-        <button type="submit" id="search"><i class="fas fa-search"></i></button>
-      </form>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #97caEF;">
+    <div class="container-fluid">
+      <!-- logo -->
+      <a class="navbar-brand" href="#"> <img src="images/filmshare-02.png" alt="" width="40" height="24"></a>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://www.google.com/">Profilo</a></li>
+          <!-- <li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a></li> -->
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" id="searchText" type="search" placeholder="Titolo Film" aria-label="Search"
+            required />
+          <button class="btn btn-outline-success" id="search" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
     </div>
   </nav>
 

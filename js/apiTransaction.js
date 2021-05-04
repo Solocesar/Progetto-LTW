@@ -19,8 +19,9 @@ function requestMovies(url, onComplete, OnError) {
 
 function searchMovie(value) {
     const path = '/search/movie'
+    
     const url = generateUrl(path) + '&query=' + value;
-
+// const render = renderMovies.bind({ title: 'Risultati' })
     requestMovies(url, renderSearchMovies, handleError);
 }
 
