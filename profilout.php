@@ -2,8 +2,8 @@
     session_start();
     $dbconn= pg_connect("host=localhost dbname=filmshare user=postgres password=giorno99");
 
-    if (isset($_SESSION['email'])) {
-        echo $_SESSION['email'];
+    if (isset($_SESSION['id'])) {
+        echo $_SESSION['id'];
 
 
     } else {
@@ -35,18 +35,18 @@
             <!--Header del profilo-->
             <header class="showcase">
                 <?php
-                    $queryn= pg_query($dbconn, "SELECT image FROM accounts WHERE email= '".$_SESSION['email']."'");
+                    $queryn= pg_query($dbconn, "SELECT image FROM user1 WHERE email= '".$_SESSION['email']."'");
                     $image= pg_fetch_row($queryn);
                     echo '<img src="' . $image[0] . '"/>';
                 ?>
                 <?php
-                    $queryn= pg_query($dbconn, "SELECT nickname FROM accounts WHERE email= '".$_SESSION['email']."'");
+                    $queryn= pg_query($dbconn, "SELECT nickname FROM user1 WHERE email= '".$_SESSION['email']."'");
                     $datas= pg_fetch_row($queryn);
                     echo '<h1 class="h1">'. $datas[0] .'</h1>';
 
                 ?>
                 <?php
-                    $queryn= pg_query($dbconn, "SELECT bio FROM accounts WHERE email= '".$_SESSION['email']."'");
+                    $queryn= pg_query($dbconn, "SELECT bio FROM user1 WHERE email= '".$_SESSION['email']."'");
                     $datas= pg_fetch_row($queryn);
                     echo '<p class="title">'. $datas[0] .'</p>';
 

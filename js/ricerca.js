@@ -83,10 +83,15 @@ searchPopularMovies();
 
 function movieSelected(movieId) {
   // la session storage si cancella appena si chiude la tab / pagina.
-  // console.log(movieId);
-  
+  console.log(movieId);
+  var data = {
+    fn: "filename",
+    str: "this_is_a_dummy_test_string"
+  };
+  $.get("film.php", data);
+
   sessionStorage.setItem('movieId', movieId);
-  window.location = 'film.html'
+  window.location = 'film.php';
   return false;
 }
 

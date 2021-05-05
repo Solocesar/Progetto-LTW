@@ -1,11 +1,11 @@
 <?php
     session_start();
     $dbconn= pg_connect("host=localhost dbname=filmshare user=postgres password=giorno99");
-    if (isset($_SESSION['email'])) {
-        echo $_SESSION['email'];
+    if (isset($_SESSION['id'])) {
+        echo $_SESSION['id'];
         if(isset($_POST['submit2'])&&!empty($_POST['submit2'])){
             if (isset($_POST['email2'])&&!empty($_POST['email2'])){
-                $query= "SELECT email FROM accounts";
+                $query= "SELECT email FROM user1";
                 $result= pg_query($query) or die ( "Query failed: ". pg_lasterror());
                 $emails= array();
                 while ( $line = pg_fetch_array ( $result, null, PGSQL_ASSOC)) {
@@ -17,14 +17,13 @@
                 if(in_array($_POST['email2'],$emails)) {
                     echo "email già presa";
                 }else{
-                    $sql = "UPDATE accounts SET email = '".$_POST['email2']."' WHERE email='".$_SESSION['email']."'" ;
+                    $sql = "UPDATE user1 SET email = '".$_POST['email2']."' WHERE email='".$_SESSION['email']."'" ;
                     $ret = pg_query($dbconn, $sql);
-                    $_SESSION['email'] = $_POST['email2'];
                 }
             } 
 
             if (isset($_POST['nome2'])&&!empty($_POST['nome2'])){
-                $query= "SELECT nickname FROM accounts";
+                $query= "SELECT nickname FROM user1";
                 $result= pg_query($query) or die ( "Query failed: ". pg_lasterror());
                 $emails= array();
                 while ( $line = pg_fetch_array ( $result, null, PGSQL_ASSOC)) {
@@ -36,20 +35,20 @@
                 if(in_array($_POST['nome2'],$emails)) {
                     echo "nickname già preso";
                 }else{
-                    $sql = "UPDATE accounts SET nickname = '".$_POST['nome2']."' WHERE email='".$_SESSION['email']."'" ;
+                    $sql = "UPDATE user1 SET nickname = '".$_POST['nome2']."' WHERE email='".$_SESSION['email']."'" ;
                     $ret = pg_query($dbconn, $sql);
                 }
             } 
 
 
             if (isset($_POST['photo2'])&&!empty($_POST['photo2'])){
-                $sql = "UPDATE accounts SET image = '".$_POST['photo2']."' WHERE email='".$_SESSION['email']."'" ;
+                $sql = "UPDATE user1 SET image = '".$_POST['photo2']."' WHERE email='".$_SESSION['email']."'" ;
                 $ret = pg_query($dbconn, $sql);
                 
             } 
 
             if (isset($_POST['textarea'])&&!empty($_POST['textarea'])){
-                $sql = "UPDATE accounts SET bio = '".$_POST['textarea']."' WHERE email='".$_SESSION['email']."'" ;
+                $sql = "UPDATE user1 SET bio = '".$_POST['textarea']."' WHERE email='".$_SESSION['email']."'" ;
                 $ret = pg_query($dbconn, $sql);
                 
             } 
@@ -88,7 +87,7 @@
                     <div class="c1">
                         <!--Corpo impostazioni-->
                         <?php
-                                $queryn= pg_query($dbconn, "SELECT image FROM accounts WHERE email= '".$_SESSION['email']."'");
+                                $queryn= pg_query($dbconn, "SELECT image FROM user1 WHERE email= '".$_SESSION['email']."'");
                                 $image= pg_fetch_row($queryn);
                                 echo '<img src="' . $image[0] . '"/>';
                         ?>
@@ -96,7 +95,7 @@
                         <p>Change your nickname:</p>
                         <p1>
                             <?php
-                                $queryn= pg_query($dbconn, "SELECT nickname FROM accounts WHERE email= '".$_SESSION['email']."'");
+                                $queryn= pg_query($dbconn, "SELECT nickname FROM user1 WHERE email= '".$_SESSION['email']."'");
                                 $datas= pg_fetch_row($queryn);
                                 echo '<input type="text" name= "nome2" size="15" maxlength= "15" placeholder='. $datas[0] .' >';
 
@@ -106,7 +105,7 @@
                         <p>Change your email:</p>
                         <p1> 
                             <?php
-                                $queryn= pg_query($dbconn, "SELECT email FROM accounts WHERE email= '".$_SESSION['email']."'");
+                                $queryn= pg_query($dbconn, "SELECT email FROM user1 WHERE email= '".$_SESSION['email']."'");
                                 $datas= pg_fetch_row($queryn);
                                 echo '<input type="email" name= "email2" size="25"  placeholder=' . $datas[0] . ' >';
 

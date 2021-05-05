@@ -4,7 +4,7 @@ $dbconn= pg_connect("host=localhost dbname=filmshare user=postgres password=gior
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 
     /* verifica se l'email è esistente*/
-    $query= "SELECT email FROM accounts";
+    $query= "SELECT email FROM user1";
     $result= pg_query($query) or die ( "Query failed: ". pg_lasterror());
     $emails= array();
     while ( $line = pg_fetch_array ( $result, null, PGSQL_ASSOC)) {
@@ -38,7 +38,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 
     /* registra l'utente */
 
-        $sql = "INSERT INTO accounts (email, password, nickname, image) VALUES('".$_POST['email']."','".md5($_POST['pwd'])."','".$_POST['nome']."', 'https://www.nerdplanet.it/wp-content/uploads/2019/04/Bumblebee-and-Optimus-Prime-in-Transformers.jpg')";
+        $sql = "INSERT INTO user1 (email, password, nickname, image) VALUES('".$_POST['email']."','".md5($_POST['pwd'])."','".$_POST['nome']."', 'https://www.nerdplanet.it/wp-content/uploads/2019/04/Bumblebee-and-Optimus-Prime-in-Transformers.jpg')";
         $ret = pg_query($dbconn, $sql);
         if($ret){
         

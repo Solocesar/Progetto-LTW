@@ -3,12 +3,15 @@ $dbconn= pg_connect("host=localhost dbname=filmshare user=postgres password=gior
 if(isset($_POST['submit1'])&&!empty($_POST['submit1'])){
     
     $hashpassword = md5($_POST['pwd1']);
-    $sql ="SELECT *FROM accounts WHERE email = '".pg_escape_string($_POST['email1'])."' AND password ='".$hashpassword."'";
+    $sql ="SELECT *FROM user1 WHERE email = '".pg_escape_string($_POST['email1'])."' AND password ='".$hashpassword."'";
     $data = pg_query($dbconn,$sql); 
     $login_check = pg_num_rows($data);
+    $id1="SELECT id FROM user1 WHERE email = '".pg_escape_string($_POST['email1'])."' ";
+    $id= pg_fetch_row(pg_query($dbconn,$id1))[0]; 
+    echo $id;
     if($login_check > 0){ 
         session_start();
-        $_SESSION['email'] = $_POST['email1'];
+        $_SESSION['id'] = $id;
         header('Location: http://localhost/Progetto-LTW/profilout.php');
     }else{
         

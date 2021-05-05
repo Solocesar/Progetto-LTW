@@ -51,6 +51,7 @@ Utente:
 	nickname
 	password
 	img url
+    bio
 	List[id.recensione]
 
 Tabella Recensioni:
