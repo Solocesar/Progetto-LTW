@@ -2,8 +2,12 @@
 <?php
   session_start();
   $dbconn= pg_connect("host=localhost dbname=filmshare user=postgres password=giorno99");
-  $x= $_GET['fn'];
-  echo $x;
+
+  if(isset($_SESSION['film'])) {
+    $film= $_SESSION['film'];
+    echo $film;
+  }
+
   if(isset($_POST['submit'])&&!empty($_POST['submit'])){
       $review = $_POST['review'];
       $rating = $_POST['rating'];
@@ -25,10 +29,10 @@
   <script src="https://kit.fontawesome.com/6d65c527da.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
+
   <!-- fav icon  da mettere-->
 </head>
 
-<script src="js/jquery-3.6.0.js"></script>
 
 <body>
   <!--barra navigazione-->
@@ -60,8 +64,6 @@
     <div id="movie"></div>
     <div id="trailer"></div>
   </div>
-
-
 
   <!-- script per fare la ricerca -->
   <!-- <script src="js/apiTransaction.js"></script> -->
@@ -111,18 +113,16 @@
     </div>
   </form>
 
-  <!-- <
-    p1>
-      <?php
-          $filmID = $_POST['filmID'];
-          $queryn= pg_query($dbconn, "SELECT comment FROM review WHERE filmid= $filmID");
-          $datas= pg_fetch_row($queryn);
-          for($i = 0; $i < count($datas); ++$i) {
-            echo '<input type="text" name= "nome2" size="15" maxlength= "15" placeholder='. $datas[i] .' >';
-          }
+  <?php
+      $filmID =  $_SESSION['film'];
+      $queryn= pg_query($dbconn, "SELECT comment1 FROM review WHERE filmid= $filmID");
+      $datas= pg_fetch_row($queryn);
+      echo $datas;
+      for($i = 0; $i < count($datas); ++$i) {
+        echo '<h1 class="h1">'.  $datas[$i] .'</h1>';
+      }
 
-      ?>
-    </p1> -->
+  ?>
  
   <!-- Footer  -->
   <footer>
