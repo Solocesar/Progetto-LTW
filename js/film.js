@@ -104,3 +104,7 @@ function getTrailer() {
     });
 }
 
+//recensioni
+
+const movieID=sessionStorage.getItem('movieId')
+fetch()
