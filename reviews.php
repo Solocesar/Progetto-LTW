@@ -28,6 +28,7 @@ else {
     <h3 class="name"><?=htmlspecialchars($review['userid'], ENT_QUOTES)?></h3>
     <div>
         <span class="rating"><?=str_repeat('&#9733;', $review['rating'])?></span>
+        <span class="date"><?htmlspecialchars($review['timestamp1'], ENT_QUOTES)?></span>
     </div>
     <p class="testo"><?=htmlspecialchars($review['comment1'], ENT_QUOTES)?></p>
 </div>
