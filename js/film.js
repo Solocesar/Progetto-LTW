@@ -12,8 +12,6 @@ function getMovie() {
     .then((data) => {
       const movie = data;
       let genres = '';
-      console.log(typeof movie.genres[0].name);
-
       // prende tuitti i generi e ne crea una stringa 
       for (i = 0; i < movie.genres.length; i++) {
         genres += movie.genres[i].name + ' ';
@@ -42,8 +40,8 @@ function getMovie() {
       <div class="btn-toolbar">
         <a href="index.html" class="btn btn-warning">Torna Indietro</a>   
         
-        <button type="button" class="btn btn-primary mostraTrailer" onclick="hideShow()">Mostra/Nascondi trailer</button>  
-        <button type="button" class="btn btn-primary " ">Scrivi una recensione </button>  
+        <button type="button" class="btn btn-primary mostraTrailer" onclick="hideShowTrailers()">Mostra/Nascondi trailer</button>  
+        <button type="button" class="btn btn-primary" onclick="hideShowReview()" >Scrivi una recensione </button>  
           
       </div>
     
@@ -83,11 +81,15 @@ function createVideoTemplate(data, content) {
   }
 }
 
-function hideShow() {
+function hideShowTrailers() {
   var trailer = document.getElementById("trailers")
   trailer.style.display = trailer.style.display == "none" ? "flex" : "none";
 };
 
+function hideShowReview() {
+  var review = document.getElementById("write_review")
+  review.style.display = review.style.display == "none" ? "flex" : "none";
+};
 
 function getTrailer() {
   const movieId = sessionStorage.getItem('movieId');
@@ -106,5 +108,3 @@ function getTrailer() {
 
 //recensioni
 
-const movieID=sessionStorage.getItem('movieId')
-fetch()

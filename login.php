@@ -3,13 +3,16 @@ $dbconn= pg_connect("host=localhost dbname=filmshare user=postgres password=gior
 if(isset($_POST['submit1'])&&!empty($_POST['submit1'])){
     
     $hashpassword = md5($_POST['pwd1']);
-    $sql ="SELECT *FROM accounts WHERE email = '".pg_escape_string($_POST['email1'])."' AND password ='".$hashpassword."'";
+    $sql ="SELECT *FROM user1 WHERE email = '".pg_escape_string($_POST['email1'])."' AND password ='".$hashpassword."'";
     $data = pg_query($dbconn,$sql); 
     $login_check = pg_num_rows($data);
+    $id1="SELECT id FROM user1 WHERE email = '".pg_escape_string($_POST['email1'])."' ";
+    $id= pg_fetch_row(pg_query($dbconn,$id1))[0]; 
+    echo $id;
     if($login_check > 0){ 
         session_start();
-        $_SESSION['email'] = $_POST['email1'];
-        header('Location: http://localhost/Progetto-LTW/profilout.php');
+        $_SESSION['id'] = $id;
+        header('Location: profilout.php');
     }else{
         
         $_SESSION['message'] = 'The email or password is wrong';
@@ -41,7 +44,7 @@ if(isset($_POST['submit1'])&&!empty($_POST['submit1'])){
                 <input class="sub" type="submit" name="submit1" value="submit">
                 <nav class="main-nav">
                         <ul class="main-menu">
-                            <li><a href="http://localhost/Progetto-LTW/registration.php">I haven't an account</a></li>
+                            <li><a href="registration.php">I dont have an account</a></li>
 
                         </ul>
 
@@ -51,4 +54,3 @@ if(isset($_POST['submit1'])&&!empty($_POST['submit1'])){
     
     </body>
 </html>
-

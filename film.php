@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 
 <head>
@@ -5,7 +8,9 @@
   <title>Film Share</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <script src="https://kit.fontawesome.com/6d65c527da.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/bootstrap.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/film.css">
 
@@ -27,13 +32,13 @@
       <div class="navbar-collapse collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://www.google.com/">Profilo</a></li>
+          <li class="nav-item"><a class="nav-link" href="profilout.php">Profilo</a></li>
           <!-- <li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a></li> -->
         </ul>
-        <form class="d-flex">
+        <!-- <form class="d-flex">
           <input class="form-control me-2" id="searchText" type="search" placeholder="Titolo Film" aria-label="Search"
             required />
-          <button class="btn btn-outline-success" id="search" type="submit"><i class="fas fa-search"></i></button>
+          <button class="btn btn-outline-success" id="search" type="submit"><i class="fas fa-search"></i></button> -->
         </form>
       </div>
     </div>
@@ -42,21 +47,22 @@
   <div id="container " class="container">
     <div id="movie"></div>
     <div id="containerTrailer"></div>
+    <div id= "write_review" class="write_review"  style="display: none;">
+    <form class="formReview" >
+        <input name="name" type="text" placeholder="Your Name" required>
+        <input name="rating" type="number" min="1" max="10" placeholder="Rating (1-10)" required>
+        <textarea name="content" placeholder="Write your review here..." required></textarea>
+        <button type="submit">Submit Review</button>
+    </form>
+</div>
     <div class="reviews"></div>
     <script>
-      const reviews_page_id = 460465;
-      fetch("reviews.php?movieId=" + reviews_page_id).then(response => response.text()).then(data => {
+      const movieId = sessionStorage.getItem('movieId');
+      fetch("reviews.php?movieId=" + movieId).then(response => response.text()).then(data => {
         document.querySelector(".reviews").innerHTML = data;
-          fetch("reviews.php?page_id=" + reviews_page_id, {
-            method: 'POST',
-            // body: new FormData(document.querySelector(".reviews .write_review form"))
-          }).then(response => response.text()).then(data => {
-            document.querySelector(".reviews .write_review").innerHTML = data;
-          });
       });
       </script>
   </div>
-
 
 
   <!-- script per fare la ricerca -->

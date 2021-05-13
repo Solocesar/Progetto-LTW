@@ -84,9 +84,14 @@ searchPopularMovies();
 function movieSelected(movieId) {
   // la session storage si cancella appena si chiude la tab / pagina.
   // console.log(movieId);
-  
+  // serve a passare il movieid in session 
+  $.ajax({
+    type: 'POST',
+    url: 'jsphp.php',
+    data: {'movie': movieId}
+  });
   sessionStorage.setItem('movieId', movieId);
-  window.location = 'film.html'
+  window.location = 'film.php'
   return false;
 }
 
