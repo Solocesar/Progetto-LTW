@@ -37,8 +37,8 @@ Cose da fare
 
 - ID utenti
 - film.html 
-    - Tasto per i trailer da nascondere
-    - Tasto per le recensioni che apre la Card
+    - Tasto per i trailer da nascondere [fatto]
+    - Tasto per le recensioni che apre la Card [fatto]
     - Card recensione , con punteggio ,timestamp 
 
 - Lista Amici, 
