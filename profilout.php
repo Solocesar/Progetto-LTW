@@ -63,7 +63,7 @@
                     $datas= pg_fetch_row($queryn);
                     echo '<h1 class="h1">'. $datas[0] .'</h1>';
 
-                    //bio
+                    
                     $queryn= pg_query($dbconn, "SELECT bio FROM user1 WHERE email= '".$_SESSION['email']."'");
                     $datas= pg_fetch_row($queryn);
                     echo '<p class="title">'. $datas[0] .'</p>';
@@ -80,7 +80,7 @@
             <!--Film recensiti-->
 
             <main id="main"></main>
-            
+            <script src="js/paginaFilm.js"></script>
         </div>
     </body>
 </html>

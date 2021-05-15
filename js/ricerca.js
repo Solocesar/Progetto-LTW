@@ -5,14 +5,14 @@ const searchText = document.querySelector("#searchText");
 const ContenitoreFilm = document.querySelector("#ContenitoreFilm");
 const popularMovies = document.querySelector("#popularMovies");
 
-
+//handleError
 function handleError(error) {
   console.log('Error: ', error.message);
   alert(error.message || 'Internal Server');
 }
 
 
-// sezione di un singolo film
+// sezione categoria film
 function movieSection(movies) {
   const section = document.createElement('section');
   section.classList = 'section';
@@ -50,9 +50,9 @@ function renderSearchMovies(data) {
   // array dei film 
   ContenitoreFilm.innerHTML = '';  // pulisce il container dei film 
   const movies = data.results;
-  const movieBlock = createMovieContainer(movies,'Risultati');
+  const movieBlock = createMovieContainer(movies,'Risultati ricerca');
   ContenitoreFilm.appendChild(movieBlock);
-  // console.log("Data: ", data);
+
 }
 
 // per i film popolari ,in arrivo , ecc
@@ -66,10 +66,14 @@ function renderMovies(data) {
 buttonElement.onclick = function (event) {
   event.preventDefault();
   const value = searchText.value;
-  searchMovie(value);
+  // per non permettere la ricerca di testo vuoto
+  if (value == null){ searchMovie(value);}
+  else{
+    alert('Per favore inserisci un film da cercare')
+  }
+ 
 
   searchText.value = '';
-  // console.log("Value:", value);
 };
 
 
@@ -83,7 +87,6 @@ searchPopularMovies();
 
 function movieSelected(movieId) {
   // la session storage si cancella appena si chiude la tab / pagina.
-  // console.log(movieId);
   // serve a passare il movieid in session 
   $.ajax({
     type: 'POST',

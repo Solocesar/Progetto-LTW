@@ -27,7 +27,7 @@ if(isset($_POST['submit1'])&&!empty($_POST['submit1'])){
     <body>
         <dev class="container">
             <form action="" method="post" >
-                <img src="filmshare-02.png" />
+                <img src="images/filmshare-02.png" />
                 <p>Insert your email:</p>
                 <input type="email" name= "email1" size="25"  placeholder="Insert your email" required >
                 <p>Insert your password:</p>

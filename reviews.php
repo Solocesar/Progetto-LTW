@@ -22,13 +22,13 @@ else {
 
 }
 ?>
-
+<!-- TODO: Completare css per le recensioni sotto i film e risolvere molteplici recensioni da parte dello stesso utente  -->
 <?php foreach ($reviews as $review): ?>
 <div class="review">
-    <h3 class="name"><?=htmlspecialchars($review['userid'], ENT_QUOTES)?></h3>
+    <h3 class="name">ID utente: <?=htmlspecialchars($review['userid'], ENT_QUOTES)?></h3>
     <div>
         <span class="rating"><?=str_repeat('&#9733;', $review['rating'])?></span>
-        <span class="date"><?htmlspecialchars($review['timestamp1'], ENT_QUOTES)?></span>
+        <span class="date"><?=htmlspecialchars($review['timestamp1'], ENT_QUOTES)?></span>
     </div>
     <p class="testo"><?=htmlspecialchars($review['comment1'], ENT_QUOTES)?></p>
 </div>
