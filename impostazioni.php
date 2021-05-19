@@ -17,8 +17,9 @@
                 if(in_array($_POST['email2'],$emails)) {
                     echo "email già presa";
                 }else{
-                    $sql = "UPDATE user1 SET email = '".$_POST['email2']."' WHERE email='".$_SESSION['email']."'" ;
+                    $sql = "UPDATE user1 SET email = '".$_POST['email2']."' WHERE id='".$_SESSION['id']."'" ;
                     $ret = pg_query($dbconn, $sql);
+                    $_SESSION['email'] = $_POST['email2'];
                 }
             } 
 
@@ -35,20 +36,20 @@
                 if(in_array($_POST['nome2'],$emails)) {
                     echo "nickname già preso";
                 }else{
-                    $sql = "UPDATE user1 SET nickname = '".$_POST['nome2']."' WHERE email='".$_SESSION['email']."'" ;
+                    $sql = "UPDATE user1 SET nickname = '".$_POST['nome2']."' WHERE id='".$_SESSION['id']."'" ;
                     $ret = pg_query($dbconn, $sql);
                 }
             } 
 
 
             if (isset($_POST['photo2'])&&!empty($_POST['photo2'])){
-                $sql = "UPDATE user1 SET image = '".$_POST['photo2']."' WHERE email='".$_SESSION['email']."'" ;
+                $sql = "UPDATE user1 SET image = '".$_POST['photo2']."' WHERE id='".$_SESSION['id']."'" ;
                 $ret = pg_query($dbconn, $sql);
                 
             } 
 
             if (isset($_POST['textarea'])&&!empty($_POST['textarea'])){
-                $sql = "UPDATE user1 SET bio = '".$_POST['textarea']."' WHERE email='".$_SESSION['email']."'" ;
+                $sql = "UPDATE user1 SET bio = '".$_POST['textarea']."' WHERE id='".$_SESSION['id']."'" ;
                 $ret = pg_query($dbconn, $sql);
                 
             } 
@@ -60,7 +61,7 @@
 
     } else {
 
-        echo "Not logged in HTML and code here";
+        header('Location: login.php');
     }
 
 
@@ -77,7 +78,7 @@
             <form action="" method="post" name="registr">
                 <nav class="main-nav">
                     <ul class="main-menu">
-                        <li><a href="http://localhost/Progetto-LTW/profilout.php">go back to your profile</a></li>
+                        <li><a href="profilout.php">go back to your profile</a></li>
 
                     </ul>
 
@@ -87,7 +88,7 @@
                     <div class="c1">
                         <!--Corpo impostazioni-->
                         <?php
-                                $queryn= pg_query($dbconn, "SELECT image FROM user1 WHERE email= '".$_SESSION['email']."'");
+                                $queryn= pg_query($dbconn, "SELECT image FROM user1 WHERE id= '".$_SESSION['id']."'");
                                 $image= pg_fetch_row($queryn);
                                 echo '<img src="' . $image[0] . '"/>';
                         ?>
@@ -95,7 +96,7 @@
                         <p>Change your nickname:</p>
                         <p1>
                             <?php
-                                $queryn= pg_query($dbconn, "SELECT nickname FROM user1 WHERE email= '".$_SESSION['email']."'");
+                                $queryn= pg_query($dbconn, "SELECT nickname FROM user1 WHERE id= '".$_SESSION['id']."'");
                                 $datas= pg_fetch_row($queryn);
                                 echo '<input type="text" name= "nome2" size="15" maxlength= "15" placeholder='. $datas[0] .' >';
 
@@ -105,7 +106,7 @@
                         <p>Change your email:</p>
                         <p1> 
                             <?php
-                                $queryn= pg_query($dbconn, "SELECT email FROM user1 WHERE email= '".$_SESSION['email']."'");
+                                $queryn= pg_query($dbconn, "SELECT email FROM user1 WHERE id= '".$_SESSION['id']."'");
                                 $datas= pg_fetch_row($queryn);
                                 echo '<input type="email" name= "email2" size="25"  placeholder=' . $datas[0] . ' >';
 

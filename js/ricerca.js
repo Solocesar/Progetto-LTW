@@ -84,10 +84,6 @@ searchPopularMovies();
 function movieSelected(movieId) {
   // la session storage si cancella appena si chiude la tab / pagina.
   console.log(movieId);
-
- 
-
-
   $.ajax({
     type: 'POST',
     url: 'http://localhost/Progetto-LTW/jsphp.php',

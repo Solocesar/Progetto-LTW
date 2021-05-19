@@ -13,9 +13,25 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
         }
     }
 
+
     if(in_array($_POST['email'],$emails)) {
         $_SESSION['message'] = "email already in use";
     } 
+
+    $query= "SELECT nickname FROM user1";
+    $result= pg_query($query) or die ( "Query failed: ". pg_lasterror());
+    $emails= array();
+    while ( $line = pg_fetch_array ( $result, null, PGSQL_ASSOC)) {
+        foreach( $line as $col_value) {
+            array_push($emails,  $col_value);
+        }
+    }
+
+
+    if(in_array($_POST['nome'],$emails)) {
+        $_SESSION['message'] = "nickname already in use";
+    } 
+
     elseif ($_POST['pwd']!=$_POST['pwd1']) {
         $_SESSION['message2'] =  "passwords are different";
     }

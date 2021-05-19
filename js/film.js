@@ -1,3 +1,6 @@
+const buttonElement = document.querySelector("#search");
+const searchText = document.querySelector("#searchText");
+
 function getMovie() {
   const movieId = sessionStorage.getItem('movieId');
   //  searchInfoMovie(movieId);
@@ -9,43 +12,39 @@ function getMovie() {
     .then((data) => {
       const movie = data;
       let genres = '';
-      console.log(typeof movie.genres[0].name);
-
       // prende tuitti i generi e ne crea una stringa 
       for (i = 0; i < movie.genres.length; i++) {
-        genres += movie.genres[i].name+' ';
+        genres += movie.genres[i].name + ' ';
       }
-      // movie.genres.forEach(element => {
-      //   genres+'ciao';
-      //   console.log('ciao');
-      // });
+
       let output = `
       <div class="row">
         <div class="col-md-4">
-          <img src="${imageUrl + data.poster_path}" class="thumbnail">
+          <img src="${imageUrl + data.poster_path}" class="img-fluid">
         </div>
         <div class="col-md-8">
           <h2>${movie.title}</h2>
           <ul class="list-group">
             <li class="list-group-item"><strong>Genre:</strong> ${genres}</li>
             <li class="list-group-item"><strong>Released:</strong> ${movie.release_date}</li>
-            <li class="list-group-item"><strong>Rated:</strong> ${movie.Rated}</li>
-            <li class="list-group-item"><strong>IMDB Rating:</strong> ${movie.imdbRating}</li>
-            <li class="list-group-item"><strong>Director:</strong> ${movie.Director}</li>
-            <li class="list-group-item"><strong>Writer:</strong> ${movie.Writer}</li>
-            <li class="list-group-item"><strong>Actors:</strong> ${movie.Actors}</li>
+            <li class="list-group-item"><strong>Popular index:</strong> ${movie.popularity}</li>
+
           </ul>
         </div>
       </div>
-      <div class="row">
-        <div class="well">
-          <h3>Trama</h3>
-          ${movie.overview}
-          <hr>
-          
-          <a href="index.html" class="btn btn-warning">Torna Indietro</a>
-        </div>
+      <div class="card my-4">
+        <h3 class="card-title">Trama</h3>
+        <div class="card-text">${movie.overview}</div>
       </div>
+
+      <div class="btn-toolbar">
+        <a href="index.html" class="btn btn-warning">Torna Indietro</a>   
+        
+        <button type="button" class="btn btn-primary mostraTrailer" onclick="hideShowTrailers()">Mostra/Nascondi trailer</button>  
+        <button type="button" class="btn btn-primary" onclick="hideShowReview()" >Scrivi una recensione </button>  
+          
+      </div>
+    
     `;
       $('#movie').html(output);
     })
@@ -70,6 +69,9 @@ function createVideoTemplate(data, content) {
   const videos = data.results;
   const length = videos.length > 4 ? 4 : videos.length; // lunghezza video 
   const iframeContainer = document.createElement('div');
+  iframeContainer.setAttribute('id', 'trailers');
+  iframeContainer.setAttribute('style', 'display:none');
+  iframeContainer.setAttribute('class', 'trailers');
 
   for (let i = 0; i < length; i++) {
     const video = videos[i] // singolo video
@@ -78,17 +80,17 @@ function createVideoTemplate(data, content) {
     content.appendChild(iframeContainer);
   }
 }
-// Event delegation
-// click in qualunque  parte del documento e se il target e' un img
 
-// document.onclick = function (event) {
-//   const target = event.target;
-//   if (target.tagName.toLowerCase() === 'img') {
-//     const movieId = target.dataset.movieId;
-//     console.log('MovieID:', movieId);
-//     const section = event.target.parentElement;
-//     const content = section.nextElementSibling;
-//     content.classList.add('content-display')
+function hideShowTrailers() {
+  var trailer = document.getElementById("trailers")
+  trailer.style.display = trailer.style.display == "none" ? "flex" : "none";
+};
+
+function hideShowReview() {
+  var review = document.getElementById("write_review")
+  review.style.display = review.style.display == "none" ? "flex" : "none";
+};
+
 function getTrailer() {
   const movieId = sessionStorage.getItem('movieId');
   const path = `/movie/${movieId}/videos`
@@ -96,7 +98,7 @@ function getTrailer() {
   //fetch trailers of movies
   fetch(url)
     .then((res) => res.json())
-    .then((data) => createVideoTemplate(data, trailer)
+    .then((data) => createVideoTemplate(data, containerTrailer)
 
     )
     .catch((error) => {
