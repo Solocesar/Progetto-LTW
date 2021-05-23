@@ -5,14 +5,14 @@ const searchText = document.querySelector("#searchText");
 const ContenitoreFilm = document.querySelector("#ContenitoreFilm");
 const popularMovies = document.querySelector("#popularMovies");
 
-//handleError
+
 function handleError(error) {
   console.log('Error: ', error.message);
   alert(error.message || 'Internal Server');
 }
 
 
-// sezione categoria film
+// sezione di un singolo film
 function movieSection(movies) {
   const section = document.createElement('section');
   section.classList = 'section';
@@ -20,7 +20,10 @@ function movieSection(movies) {
     const img = document.createElement('img');
     img.src = imageUrl + movie.poster_path;
     img.setAttribute('data-movie-id', movie.id);
-    img.setAttribute('onclick',`movieSelected(${movie.id})`)
+    console.log(movie.title);
+    img.setAttribute("class","clickable");
+    img.setAttribute("id","clickable");
+    img.setAttribute('onclick',`movieSelected(${movie.id},"${movie.title}")`)
     section.appendChild(img);
   })
   return section;
@@ -50,9 +53,9 @@ function renderSearchMovies(data) {
   // array dei film 
   ContenitoreFilm.innerHTML = '';  // pulisce il container dei film 
   const movies = data.results;
-  const movieBlock = createMovieContainer(movies,'Risultati ricerca');
+  const movieBlock = createMovieContainer(movies,'Risultati');
   ContenitoreFilm.appendChild(movieBlock);
-
+  // console.log("Data: ", data);
 }
 
 // per i film popolari ,in arrivo , ecc
@@ -66,16 +69,21 @@ function renderMovies(data) {
 buttonElement.onclick = function (event) {
   event.preventDefault();
   const value = searchText.value;
-  // per non permettere la ricerca di testo vuoto
-  if (value == null){ searchMovie(value);}
-  else{
-    alert('Per favore inserisci un film da cercare')
-  }
- 
+  searchMovie(value);
 
   searchText.value = '';
+  // console.log("Value:", value);
 };
-
+// $(window).on('load',function() {
+//   console.log("ciao");  
+//   document.querySelector(".clickable").addEventListener('click',)
+//   var x= document.getElementsByClassName('slider')
+//   console.log(x[0]);
+//   // executes when complete page is fully loaded, including all frames, objects and images
+//   $(".slider > .movie> .section >.clickable").on("click", function(){
+//     alert("The paragraph was clicked.");
+//   });
+//   });
 
 //Carica le sezioni di film popolari e in arrivo 
 searchUpcomingMovies();
@@ -85,17 +93,24 @@ searchPopularMovies();
 
 // js per la pagina di un unico film 
 
-function movieSelected(movieId) {
+
+
+function movieSelected(movieId,movieTitle) {
   // la session storage si cancella appena si chiude la tab / pagina.
-  // serve a passare il movieid in session 
+  // var movieId= movie.id;
+  sessionStorage.setItem('title', movieTitle);
+  console.log(movieTitle);
   $.ajax({
     type: 'POST',
     url: 'jsphp.php',
-    data: {'movie': movieId}
+    data: {'movie': movieId,'title':movieTitle}
   });
+
+
   sessionStorage.setItem('movieId', movieId);
-  window.location = 'film.php'
+  window.location.href = 'film.php';
+  
+
   return false;
 }
-
 

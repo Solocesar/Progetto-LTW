@@ -41,7 +41,7 @@ function getMovie() {
         <a href="index.html" class="btn btn-warning">Torna Indietro</a>   
         
         <button type="button" class="btn btn-primary mostraTrailer" onclick="hideShowTrailers()">Mostra/Nascondi trailer</button>  
-        <button type="button" class="btn btn-primary" onclick="hideShowReview()" >Scrivi una recensione </button>  
+        <button type="button" id="recensioneModal" class="btn btn-primary recensioneModal" data-bs-toggle="modal" data-bs-target="#exampleModal">Recensione modale</button>        
           
       </div>
     
@@ -88,6 +88,7 @@ function hideShowTrailers() {
 
 function hideShowReview() {
   var review = document.getElementById("write_review")
+  
   review.style.display = review.style.display == "none" ? "flex" : "none";
 };
 
@@ -105,6 +106,3 @@ function getTrailer() {
       console.log("Error: ", error);
     });
 }
-
-//recensioni
-

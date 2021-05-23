@@ -5,84 +5,57 @@
 }
 
 body{
-  padding-top: 65px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.5;
   background-color: white;
   color: black;
 }
 
-.container{
-  width: 96%;
-  max-width: 1100px;
-  margin: auto;
-}
-
-.main-nav{
-  border-radius: 4px;
-  align-items: center;
-  font-weight: bold;
-  height: 80px;
-  font-size: 16px;
-  padding: 20px 0;
-}
-
-ul{
-  list-style: none;
-}
-
-a{
-  text-decoration: none;
-  color: black;
-
-}
-
-.main-nav ul{
-  display: flex;
-}
-
-.main-nav ul li{
-  padding: 0 20px;
-}
-
-.main-nav ul li a{
-  padding-bottom: 2px;
-}
-
-.main-nav ul li a:hover{
-  border-bottom: 2px solid chocolate;
-}
-
-.showcase{
-  width: 100%;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  padding-top: 40px;
-}
-
-.showcase img{
-  border: 3px solid black;
-  border-radius: 10%;
-  width: 250;
-  height: 250;
-}
-
-.box{
-  display: flex;
-  margin-bottom: 40px;
-  margin-top: 20px;
-}
-.box img{
-  width: 150px;
-  max-width: 150px;
-  height: 200px;
+#showcase{
+  margin-top: 150px;
+  margin-bottom:30px;
   
 }
-.info-film{
-  padding-left: 30px;
+.title{
+  font-size: 30px;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+}
+
+.like{
+  display: flex;
+  flex-direction: row;
+}
+.likeB {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  padding:0;
+  cursor: pointer;
+}
+
+i{
+  cursor: pointer;
+}
+#card{
+  margin-top: 50px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  display: none;
+  border-radius: 3px;
+}
+
+#load{
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.bottoni{
+  margin-top: 10px;
 }
