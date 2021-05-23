@@ -88,6 +88,7 @@ function hideShowTrailers() {
 
 function hideShowReview() {
   var review = document.getElementById("write_review")
+  
   review.style.display = review.style.display == "none" ? "flex" : "none";
 };
 
@@ -106,3 +107,4 @@ function getTrailer() {
     });
 }
 
+//recensioni

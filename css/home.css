@@ -2,149 +2,53 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
+  }
 
 body{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.5;
     color: black;
-    background-color: darkcyan;
 }
 
-.container{
-    position: absolute;
-    top: 15%;
-    left: 28%;
-    margin: -100px 0 0 -150px;
+.card{
+    margin-top: 50px;
+    margin-bottom: 10px;
+    display: none;
+    border-radius: 3px;
+    
 }
 
-.main-nav{
-    border-radius: 4px;
-    align-items: center;
-    font-weight: bold;
+.avatar {
+    width: 80px;
     height: 80px;
-    font-size: 16px;
-    padding: 20px 0;
-  }
-  
-  ul{
-    list-style: none;
-  }
-  
-  a{
-    color: black;
-    text-decoration: none;
-  
-  }
-  
-  .main-nav ul{
-    display: flex;
-  }
-  
-  .main-nav ul li{
-    padding: 0 20px;
-  }
-  
-  .main-nav ul li a{
-    padding-bottom: 2px;
-  }
-  
-  .main-nav ul li a:hover{
-    border-bottom: 2px solid chocolate;
+    border-radius: 50%;
   }
 
-
-.c1{
-    margin-right: 250px;
-    margin-top: 28px;
+.row{
+    margin-top: 10px;
 }
 
-.review{
-    background-color: white;
-    border: 3px solid white;
-    border-radius: 2%;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-.utente{
-    display: flex;
-    flex-direction: row;
-    padding-bottom: 10px;
-}
-.utente1{
-    padding-left: 20px;
-    display: flex;
-    flex-direction: row;
-}
-
-.commento{
-    display: flex;
-    flex-direction: row;
-
-}
-
-.film{
-    padding-top:10px;
-    display: flex;
-    flex-direction: row;
-
-}
-
-.logo{
-    width: 110px;
-    height: 90px;
-}
-
-.utente img{
-    border: 1px solid black;
-    border-radius: 35%;
-    width: 60px;
-    height: 60px;
-}
-.utente h1{
+.nomeUtente {
+    border: none;
     font-size: 25px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
+    background: none;
+    padding:0;
+    cursor: pointer;
+  }
 
-.utente p{
-    padding-top: 1px;
-    padding-left: 10px;
-    font-size: 23px;
-}
-
-.nomeFilm{
-    padding-left: 10px;
-}
-
-.film {
-    display: flex;
-    justify-content: end;
-}
-
-.like{
-    display: flex;
-    flex-direction: row;
-}
-.likeB {
+  .likeB {
     width: 30px;
-    height: 30px;
-}
-.likeB img{
-    width: 25px;
-    height: 25px;
-   
-}
-
-.nomeUtente{
-    padding-top: 3px;
-    font-size: 25px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border: none;
     background: none;
+    padding:0;
+    cursor: pointer;
+  }
+  
+.nomeFilm{
+    font-size: 15;
 }
+  
+#load{
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }

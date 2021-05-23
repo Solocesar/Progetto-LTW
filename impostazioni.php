@@ -78,8 +78,12 @@
             <form action="" method="post" name="registr">
                 <nav class="main-nav">
                     <ul class="main-menu">
-                        <li><a href="profilout.php">go back to your profile</a></li>
-
+                        <?php 
+                            $_SESSION['profile']= $_SESSION['id'];
+                            echo'
+                            <li><a href="profilout.php">go back to your profile</a></li>
+                            '
+                        ?>
                     </ul>
 
                 </nav>    

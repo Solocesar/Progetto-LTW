@@ -33,7 +33,8 @@ session_start();
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="profilout.php">Profilo</a></li>
-          <!-- <li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a></li> -->
+          <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
         </ul>
         <!-- <form class="d-flex">
           <input class="form-control me-2" id="searchText" type="search" placeholder="Titolo Film" aria-label="Search"
@@ -47,20 +48,24 @@ session_start();
   <div id="container " class="container">
     <div id="movie"></div>
     <div id="containerTrailer"></div>
-    <div id= "write_review" class="write_review"  style="display: none;">
-    <form class="formReview" >
-        <input name="name" type="text" placeholder="Your Name" required>
-        <input name="rating" type="number" min="1" max="10" placeholder="Rating (1-10)" required>
-        <textarea name="content" placeholder="Write your review here..." required></textarea>
-        <button type="submit">Submit Review</button>
-    </form>
-</div>
     <div class="reviews"></div>
     <script>
       const movieId = sessionStorage.getItem('movieId');
       fetch("reviews.php?movieId=" + movieId).then(response => response.text()).then(data => {
         document.querySelector(".reviews").innerHTML = data;
-      });
+
+        document.querySelector(".write_review").onsubmit = event => {
+		    event.preventDefault();
+        console.log('nonfunziona');
+	    	fetch("reviews.php?movieId="+ movieId, {
+		  	method: 'POST',
+			  body: new FormData(document.querySelector(".reviews .write_review form"))
+	    	}).then(response => response.text()).then(data => {
+		  	document.querySelector(".write_review").innerHTML = data;
+		});
+	};
+});
+
       </script>
   </div>
 
@@ -70,7 +75,7 @@ session_start();
   <script src="js/apiTransaction.js"></script>
   <script src="js/film.js"></script>
   <script>
-    // const id 
+
   </script>
   <script>
 

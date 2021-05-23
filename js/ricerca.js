@@ -17,11 +17,14 @@ function movieSection(movies) {
   const section = document.createElement('section');
   section.classList = 'section';
   movies.map((movie) => {
+    console.log(movie);
     const img = document.createElement('img');
     img.src = imageUrl + movie.poster_path;
     img.setAttribute('data-movie-id', movie.id);
+    img.setAttribute('data-movie-title', movie.title);
     img.setAttribute('onclick',`movieSelected(${movie.id})`)
     section.appendChild(img);
+    
   })
   return section;
 }
@@ -95,7 +98,17 @@ function movieSelected(movieId) {
   window.location.href = 'http://localhost/Progetto-LTW/film.php';
   
 
-  return false;
+}
+
+function movieSelected2(movieTitle) {
+  // la session storage si cancella appena si chiude la tab / pagina.
+  console.log(movieTitle);
+  $.ajax({
+    type: 'POST',
+    url: 'http://localhost/Progetto-LTW/jsphp.php',
+    data: {'title': movieTitle}
+  });
+
 }
 
 
