@@ -79,7 +79,6 @@ if(isset($_SESSION['id'],$_POST['rating'],$_POST['content'])){
         <label for="customRange2" class="form-label">Voto(1-5)</label>
         <input name="rating" type="range" class="form-range" min="0" max="5" id="customRange2">
         <textarea class="form-control" rows="3" name="content" placeholder="Write your review here..." required></textarea>
-        <!-- <button type="submit">Submit Review</button> -->
         
     
       </div>

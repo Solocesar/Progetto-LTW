@@ -1,13 +1,6 @@
 <?php
 
 session_start();
-
-echo session_id();
-echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';
-
-
 //connesione database
 $dbconn= pg_connect("host=localhost dbname=filmshare user=postgres password=giorno99");
 if (isset($_SESSION['film'])){
@@ -43,6 +36,37 @@ else {
 
 <!-- TODO: Completare css per le recensioni sotto i film e risolvere molteplici recensioni da parte dello stesso utente  -->
 <?php foreach ($reviews as $review): ?>
+
+    <?php 
+            $userid = $review['userid'];
+            $queryn= pg_query($dbconn, "SELECT * FROM user1 WHERE id= $userid");
+            $datas= pg_fetch_row($queryn);
+
+            ?>
+
+    <div class="card" style="width: 45rem;">
+        <div class="card-body">
+            <div class="col-md-auto">
+                    <img  class="avatar" src= <?php echo ($datas[5]); ?> >
+            </div>
+            <div class="col-6">
+                <form action="profilout.php" method="post" name="utentenickname">
+                    <button value=<?= $review['userid']?> class= "nomeUtente"  type="submit" name="nickUser"><?php echo ($datas[2]); ?></button>
+                </form>
+            </div>
+            <div class="col">
+                <p class="timestamp"><?=$review['timestamp1']?></p>
+            </div>
+        </div>  
+    </div>
+    <hr id="hr" style="width: 100%;margin: auto;">
+    <div class="card-body">
+        <p class="card-text"><?php echo $review['comment1']?></p>
+
+
+    </div>
+    <!-- // prende nickname utente della recensione in questione -->
+
 <div class="review">
     <!-- <button  type="button" class="name btn btn-link"> -->
     <!-- // prende nickname utente della recensione in questione -->
@@ -62,7 +86,6 @@ else {
         <span class="rating"><?=str_repeat('&#9733;', $review['rating'])?></span>
         <span class="date"><?=htmlspecialchars($review['timestamp1'], ENT_QUOTES)?></span>
         <span class="nomeFilm" data-id='2100'><?=htmlspecialchars($review['nomeFilm'], ENT_QUOTES)?></span>
-        <button value=<?= $review['nomeFilm']?> class= "nomeUtente btn btn-primary"  type="submit" name="nickUser"><?=htmlspecialchars($review['nomeFilm'], ENT_QUOTES)?></button>
     </div>
     <p class="testo"><?=htmlspecialchars($review['comment1'], ENT_QUOTES)?></p>
 </div>
