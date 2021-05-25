@@ -11,9 +11,29 @@ if(isset($_SESSION['id'],$_POST['rating'],$_POST['content'])){
       'filmid'=>$_SESSION['film'], 
       'comment1'=>$_POST['content'],
       'nomeFilm' => $_SESSION['title'],
-      'timestamp1'=>date("Y-m-d",time()));
+      'timestamp1'=>date("Y-m-d H:i",time()));
   pg_insert($dbconn,'review',$toinsert);
 }
+if (isset($_POST['likeB'])&&!empty($_POST['likeB'])){
+
+  $query= "SELECT iduser FROM like1 WHERE idreview ='". $_POST['likeB']."'";
+  $result= pg_query($query) or die ( "Query failed: ". pg_lasterror());
+  $emails= array();
+  while ( $line = pg_fetch_array ( $result, null, PGSQL_ASSOC)) {
+      foreach( $line as $col_value) {
+          array_push($emails,  $col_value);
+      }
+  }
+
+  if(in_array($_SESSION['id'],$emails)) {
+      $sql= "DELETE FROM like1 WHERE idreview= '".$_POST['likeB']."' AND iduser= '".$_SESSION['id']."'";
+      $ret = pg_query($dbconn, $sql);
+  } else {
+      $sql= "INSERT INTO like1 VALUES('".$_POST['likeB']."','".$_SESSION['id']."')";
+      $ret = pg_query($dbconn, $sql);
+  }
+
+} 
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +46,7 @@ if(isset($_SESSION['id'],$_POST['rating'],$_POST['content'])){
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"></script>
   <script src="js/jquery-3.6.0.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/film.css">
@@ -61,7 +81,7 @@ if(isset($_SESSION['id'],$_POST['rating'],$_POST['content'])){
     </div>
   </nav>
 
-  <div id="container " class="container">
+  <div id="container" class="container">
     <!-- Button trigger modal -->
 
     <!-- Modal -->
@@ -83,8 +103,8 @@ if(isset($_SESSION['id'],$_POST['rating'],$_POST['content'])){
     
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" >Submit Review</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" >Submit Review</button>
       </div>
       </form>
     </div>
@@ -98,19 +118,7 @@ if(isset($_SESSION['id'],$_POST['rating'],$_POST['content'])){
     <script>
       const movieId = sessionStorage.getItem('movieId');
       fetch("reviews.php?movieId=" + movieId).then(response => response.text()).then(data => {
-        document.querySelector(".reviews").innerHTML = data;
-
-        document.querySelector(".write_review").onsubmit = event => {
-		    event.preventDefault();
-        console.log('nonfunziona');
-	    	fetch("reviews.php?movieId="+ movieId, {
-		  	method: 'POST',
-			  body: new FormData(document.querySelector(".reviews .write_review form"))
-	    	}).then(response => response.text()).then(data => {
-		  	document.querySelector(".write_review").innerHTML = data;
-		});
-	};
-});
+        document.querySelector(".reviews").innerHTML = data;});
 
       </script>
   </div>
@@ -120,16 +128,6 @@ if(isset($_SESSION['id'],$_POST['rating'],$_POST['content'])){
 
   <script src="js/apiTransaction.js"></script>
   <script src="js/film.js"></script>
-  <script type="text/javascript">
-  
-    var data = <?php echo true ;?>;
-    $(document).ready(function () {
-    // if (!isNaN(data)){
-    if ((true)){
-      $(".recensioneModal").hide();
-      console.log('sono qui');
-    }});
-</script>
   <script>
 
     getMovie()

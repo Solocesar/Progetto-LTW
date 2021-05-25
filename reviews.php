@@ -5,6 +5,7 @@ session_start();
 $dbconn= pg_connect("host=localhost dbname=filmshare user=postgres password=giorno99");
 if (isset($_SESSION['film'])){
 
+
     if(isset($_SESSION['id'],$_POST['rating'],$_POST['content'])){
         // se hanno inviato i dati della recensione inserirla nel database
         $toinsert = array(
@@ -30,63 +31,56 @@ else {
 
 
 ?>
-<div class="write_review" id="write_review" style="display: none;">
-
-</div>
-
 <!-- TODO: Completare css per le recensioni sotto i film e risolvere molteplici recensioni da parte dello stesso utente  -->
+<div class="row justify-content-center align-self-center">
 <?php foreach ($reviews as $review): ?>
 
     <?php 
             $userid = $review['userid'];
             $queryn= pg_query($dbconn, "SELECT * FROM user1 WHERE id= $userid");
             $datas= pg_fetch_row($queryn);
-
-            ?>
+            $queryLike= pg_query($dbconn, "SELECT * FROM like1 WHERE idreview='".$review['id']."'");
+            $likes= pg_num_rows($queryLike);
+    ?>
 
     <div class="card" style="width: 45rem;">
         <div class="card-body">
+        <div id="inte" class="row"> 
             <div class="col-md-auto">
                     <img  class="avatar" src= <?php echo ($datas[5]); ?> >
             </div>
             <div class="col-6">
                 <form action="profilout.php" method="post" name="utentenickname">
-                    <button value=<?= $review['userid']?> class= "nomeUtente"  type="submit" name="nickUser"><?php echo ($datas[2]); ?></button>
+                    <button value=<?= $review['userid']?> class= "nomeUtente btn btn-info"  type="submit" name="nickUser"><strong><?php echo ($datas[2]); ?></strong></button>
                 </form>
             </div>
             <div class="col">
                 <p class="timestamp"><?=$review['timestamp1']?></p>
             </div>
         </div>  
-    </div>
     <hr id="hr" style="width: 100%;margin: auto;">
     <div class="card-body">
         <p class="card-text"><?php echo $review['comment1']?></p>
-
-
+        <div class="stars">
+            <span class="rating1"><?=str_repeat("&#9733;", $review['rating'])?><?=str_repeat("&#9734;", 10-$review['rating'])?></span>
+        </div>
+        <div class="row">
+            <div class="d-flex flex-row-reverse">
+                <div class="col-md-auto">
+                    <form action="film.php" method="post" name="likePost">
+                        <button class= "likeB" value=<?php echo $review['id']?>  type="submit" name="likeB"><i class="far fa-thumbs-up" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+                <div class="col-md-auto">
+                    <p><?php echo $likes?></p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
     </div>
     <!-- // prende nickname utente della recensione in questione -->
 
-<div class="review">
-    <!-- <button  type="button" class="name btn btn-link"> -->
-    <!-- // prende nickname utente della recensione in questione -->
-    <form action="profilout.php" method="post" name="utentenickname">
-    <?php 
-            $userid = $review['userid'];
-            $queryn= pg_query($dbconn, "SELECT nickname FROM user1 WHERE id= $userid");
-            $datas= pg_fetch_row($queryn);
-            ?>
-       <button value=<?= $review['userid']?> class= "nomeUtente"  type="submit" name="nickUser">
-        <?php echo ($datas[0]); ?>
-        </button>
-    </form>
-    
-    </button>
-    <div>
-        <span class="rating"><?=str_repeat('&#9733;', $review['rating'])?></span>
-        <span class="date"><?=htmlspecialchars($review['timestamp1'], ENT_QUOTES)?></span>
-        <span class="nomeFilm" data-id='2100'><?=htmlspecialchars($review['nomeFilm'], ENT_QUOTES)?></span>
-    </div>
-    <p class="testo"><?=htmlspecialchars($review['comment1'], ENT_QUOTES)?></p>
-</div>
+
 <?php endforeach ?>
+</div>

@@ -15,3 +15,23 @@ body {
     display: none;
     padding-top: 65px;
 }
+
+.card{
+  margin-top: 50px;
+  margin-bottom: 10px;
+  /* display: none; */
+  border-radius: 3px;
+  
+}
+.likeB {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  padding:0;
+  cursor: pointer;
+}
+
+i{
+  cursor: pointer;
+}
