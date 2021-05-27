@@ -16,7 +16,7 @@ function getMovie() {
       for (i = 0; i < movie.genres.length; i++) {
         genres += movie.genres[i].name + ' ';
       }
-
+      let compagnia= movie.production_companies[0].name;
       let output = `
       <div class="row">
         <div class="col-md-4">
@@ -25,9 +25,12 @@ function getMovie() {
         <div class="col-md-8">
           <h2>${movie.title}</h2>
           <ul class="list-group">
-            <li class="list-group-item"><strong>Genre:</strong> ${genres}</li>
-            <li class="list-group-item"><strong>Released:</strong> ${movie.release_date}</li>
-            <li class="list-group-item"><strong>Popular index:</strong> ${movie.popularity}</li>
+            <li class="list-group-item"><strong>Generi:</strong> ${genres}</li>
+            <li class="list-group-item"><strong>Data di rilascio:</strong> ${movie.release_date}</li>
+            <li class="list-group-item"><strong>Indice Popolarita' TMDB:</strong> ${movie.popularity}</li>
+            <li class="list-group-item"><strong>Budget:</strong> ${movie.budget} $</li>
+            <li class="list-group-item"><strong>Compagnia principale:</strong> ${compagnia}</li>
+            <li class="list-group-item"><strong>Link IMDB:</strong> <a href="https://www.imdb.com/title/${movie.imdb_id}">${movie.title}</a></li>
 
           </ul>
         </div>
@@ -37,9 +40,9 @@ function getMovie() {
         <div class="card-text">${movie.overview}</div>
       </div>
 
-      <div class="buttons">  
-        <button type="button" class="btn btn-primary md-2 mostraTrailer" onclick="hideShowTrailers()">Mostra/Nascondi trailer</button>  
-        <button type="button" id="recensioneModal" class="btn btn-primary  recensioneModal" data-bs-toggle="modal" data-bs-target="#exampleModal">Scrivi una recensione</button>        
+      <div class="buttons mb-3">  
+        <button type="button" class="btn btn-primary md-2 mb-2 mostraTrailer" onclick="hideShowTrailers()">Mostra/Nascondi trailer</button>  
+        <button type="button" id="recensioneModal" class="btn btn-primary  recensioneModal mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Scrivi una recensione</button>        
           
       </div>
     

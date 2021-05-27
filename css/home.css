@@ -29,10 +29,6 @@ body{
 }
 
 .nomeUtente {
-    border: none;
-    font-size: 25px;
-    background: none;
-    padding:0;
     cursor: pointer;
   }
 
@@ -58,5 +54,5 @@ body{
   display: none;
 }
 .space{
-  padding-top: 300px;;
+  padding-top: 300px;
 }

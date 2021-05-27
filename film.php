@@ -103,12 +103,13 @@ if (isset($_POST['likeB'])&&!empty($_POST['likeB'])){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" >Submit Review</button>
+        <button type="submit" class="btn btn-primary" >Submit</button>
       </div>
       </form>
     </div>
   </div>
 </div>
+<!-- fine modale -->
 
     <div id="movie"></div>
     

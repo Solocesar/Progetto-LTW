@@ -11,7 +11,13 @@
            
             header('Location: profilout.php');
         }
-
+        if(isset($_POST['filmPost'])&&!empty($_POST['filmPost'])){
+            
+            $_SESSION['film'] =$_POST['film'];
+            echo $_POST['filmPost'];
+            // $_SESSION['title'] =$_POST['filmPost'];
+            header('Location: film.php');
+        }
         if (isset($_POST['likeB'])&&!empty($_POST['likeB'])){
 
             $query= "SELECT iduser FROM like1 WHERE idreview ='". $_POST['likeB']."'";
@@ -122,7 +128,8 @@
                                 "voto"=> $datas1[0],
                                 "like"=> $likes,
                                 "idLike"=> $datas1[1],
-                                "timestamp"=> $datas1[6]
+                                "timestamp"=> $datas1[6],
+                                "filmid"=> $datas1[2]
                             ];
                             array_push($reviews, $dizionario);
                         }
@@ -143,7 +150,7 @@
                                     </div>
                                     <div class="col-6">
                                         <form action="" method="post" name="utentenickname">
-                                            <button value= '.  $row['idUtente'] .' class= "nomeUtente"  type="submit" name="nickUser"><strong> '. $row['nomeUtente'] .'</strong></button>
+                                            <button value= '.  $row['idUtente'] .' class= "nomeUtente btn btn-info"  type="submit" name="nickUser"><strong> '. $row['nomeUtente'] .'</strong></button>
                                         </form>
                                         
                                     </div>
@@ -155,6 +162,10 @@
                             <hr id="hr" style="width: 100%;margin: auto;">
                             <div class="card-body">
                                 <h5 class="card-title"> '.  $row['film'] .'</h5>
+                                <form action="" method="post" name="film">
+                                <button value= '.  $row['filmid'] .' class= "btn btn-info"  type="submit" name="film"><strong> '. $row['film'] .'</strong></button>
+                                <button value= '.  $row['film'] .' class= ""  type="submit" name="filmPost"></button>
+                                    </form>
                                 <p class="card-text">'.  $row['commento'] .'</p>
                                 ';?>
 
@@ -198,6 +209,7 @@
             if ($(".recensione").length>0){
                 $(function(){
                 $("#load").show();
+                $(".space").hide();
                 $(".recensione").slice(0, 10).show(); // select the first ten
                 $("#load").click(function(e){ // click event for load more
                     e.preventDefault();

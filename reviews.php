@@ -36,16 +36,12 @@ else {
 
 ?>
 <!-- TODO: Completare css per le recensioni sotto i film e risolvere molteplici recensioni da parte dello stesso utente  -->
-<div class="voto_medio">
+<div class="voto_medio mx-auto">
     <span class="num"><?=number_format($voto[0], 1)?></span>
     <span class="stars"><?=str_repeat('&#9733;', round($voto[0]))?></span>
-    <span class="totale"><?=$voto[1]?> reviews</span>
+    <span class="totale"><?=$voto[1]?> recensioni</span>
 </div>
-<?php
 
-$query ='SELECT AVG(rating) AS overall_rating, COUNT(*) AS total_reviews FROM reviews WHERE filmid = ?' 
-
-?>
 
 <?php foreach ($reviews as $review): ?>
 
@@ -71,6 +67,7 @@ $query ='SELECT AVG(rating) AS overall_rating, COUNT(*) AS total_reviews FROM re
             <div class="col">
                 <p class="timestamp"><?=$review['timestamp1']?></p>
             </div>
+        </div>  
         </div>  
     <hr id="hr" style="width: 100%;margin: auto;">
     <div class="card-body">

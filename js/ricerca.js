@@ -3,7 +3,7 @@
 const buttonElement = document.querySelector("#search");
 const searchText = document.querySelector("#searchText");
 const ContenitoreFilm = document.querySelector("#ContenitoreFilm");
-const popularMovies = document.querySelector("#popularMovies");
+const popularMovies = document.querySelector("#popularMovies"); // popular and upcoming
 
 
 function handleError(error) {
@@ -12,17 +12,18 @@ function handleError(error) {
 }
 
 
-// sezione di un singolo film
+// sezione dei film
 function movieSection(movies) {
   const section = document.createElement('section');
   section.classList = 'section';
+  if (movies==null){
+    alert("Titolo film non fornito")
+    window.location.reload();
+  }
   movies.map((movie) => {
     const img = document.createElement('img');
     img.src = imageUrl + movie.poster_path;
     img.setAttribute('data-movie-id', movie.id);
-    console.log(movie.title);
-    img.setAttribute("class","clickable");
-    img.setAttribute("id","clickable");
     img.setAttribute('onclick',`movieSelected(${movie.id},"${movie.title}")`)
     section.appendChild(img);
   })
@@ -38,14 +39,11 @@ function createMovieContainer(movies, title = '') {
   const header = document.createElement('h2');
   header.innerHTML = title;
 
-  const content = document.createElement('div');
-  content.classList = 'content';
 
   const section = movieSection(movies);
 
   movieElement.appendChild(header);
   movieElement.appendChild(section);
-  movieElement.appendChild(content);
   return movieElement;
 }
 
@@ -68,22 +66,12 @@ function renderMovies(data) {
 
 buttonElement.onclick = function (event) {
   event.preventDefault();
+
   const value = searchText.value;
   searchMovie(value);
-
   searchText.value = '';
-  // console.log("Value:", value);
 };
-// $(window).on('load',function() {
-//   console.log("ciao");  
-//   document.querySelector(".clickable").addEventListener('click',)
-//   var x= document.getElementsByClassName('slider')
-//   console.log(x[0]);
-//   // executes when complete page is fully loaded, including all frames, objects and images
-//   $(".slider > .movie> .section >.clickable").on("click", function(){
-//     alert("The paragraph was clicked.");
-//   });
-//   });
+
 
 //Carica le sezioni di film popolari e in arrivo 
 searchUpcomingMovies();
@@ -92,9 +80,7 @@ searchPopularMovies();
 
 
 // js per la pagina di un unico film 
-
-
-
+//aggiunta di php later on
 function movieSelected(movieId,movieTitle) {
   // la session storage si cancella appena si chiude la tab / pagina.
   // var movieId= movie.id;

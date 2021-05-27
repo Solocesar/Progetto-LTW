@@ -40,3 +40,22 @@ i{
   cursor: pointer;
 }
 
+ .voto_medio .stars {
+  letter-spacing: 3px;
+  font-size: 32px;
+  color: #F5A624;
+  padding: 0 5px 0 10px;
+}
+.voto_medio .totale {
+  color: #777777;
+  font-size: 14px;
+}
+
+.voto_medio .num {
+  font-size: 30px;
+  font-weight: bold;
+  color: #F5A624;
+}
+iframe{
+  margin-bottom:20px;
+}

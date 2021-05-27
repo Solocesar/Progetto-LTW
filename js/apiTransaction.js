@@ -31,6 +31,7 @@ function searchInfoMovie(value){
 
     requestMovies(url,getMovie,handleError);
 }   
+
 function searchUpcomingMovies() {
     const path = '/movie/upcoming'
     const url = generateUrl(path);
