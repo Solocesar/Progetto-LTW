@@ -42,7 +42,7 @@ else {
     <span class="totale"><?=$voto[1]?> recensioni</span>
 </div>
 
-
+<div class="row mx-2">
 <?php foreach ($reviews as $review): ?>
 
     <?php 
@@ -53,7 +53,7 @@ else {
             $likes= pg_num_rows($queryLike);
     ?>
 
-    <div class="card recensione mx-2" style="width: 45rem;">
+    <div class="card recensione" style="width: 45rem;">
         <div class="card-body">
         <div id="inte" class="row"> 
             <div class="col-md-auto">
@@ -73,7 +73,7 @@ else {
     <div class="card-body">
         <p class="card-text"><?php echo $review['comment1']?></p>
         <div class="stars">
-            <span class="rating1"><?=str_repeat("&#9733;", $review['rating'])?><?=str_repeat("&#9734;", 10-$review['rating'])?></span>
+            <span class="rating1"><?=str_repeat("&#9733;", $review['rating'])?><?=str_repeat("&#9734;", 5-$review['rating'])?></span>
         </div>
         <div class="row">
             <div class="d-flex flex-row-reverse">
@@ -88,7 +88,6 @@ else {
             </div>
         </div>
         </div>
-    </div>
     </div>
     <!-- // prende nickname utente della recensione in questione -->
 

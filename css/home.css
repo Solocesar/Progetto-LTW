@@ -56,3 +56,8 @@ body{
 .space{
   padding-top: 300px;
 }
+.bottonefilm{
+  border: none;
+  margin-left: -12px;
+  margin-bottom: 3px;
+}

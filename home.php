@@ -4,7 +4,6 @@
     $dbconn= pg_connect("host=localhost dbname=filmshare user=postgres password=giorno99");
 
     if (isset($_SESSION['id'])) {
-        echo $_SESSION['id'];
 
         if (isset($_POST['nickUser'])&&!empty($_POST['nickUser'])){
             $_SESSION['profile']= $_POST['nickUser'];
@@ -161,16 +160,12 @@
                             </div>
                             <hr id="hr" style="width: 100%;margin: auto;">
                             <div class="card-body">
-                                <h5 class="card-title"> '.  $row['film'] .'</h5>
-                                <form action="" method="post" name="film">
-                                <button value= '.  $row['filmid'] .' class= "btn btn-info"  type="submit" name="film"><strong> '. $row['film'] .'</strong></button>
-                                <button value= '.  $row['film'] .' class= ""  type="submit" name="filmPost"></button>
-                                    </form>
+                                <button value= '.  $row['filmid'] .' class="btn btn-outline-dark bottonefilm"  name="filmPost" onclick="movieSelected('. $row['filmid'] .',\''. $row['film'] .'\')"><strong> '. $row['film'] .'</strong></button>
                                 <p class="card-text">'.  $row['commento'] .'</p>
                                 ';?>
 
                                 <div class="stars">
-                                    <span class="rating1"><?=str_repeat("&#9733;", $row['voto'])?><?=str_repeat("&#9734;", 10-$row['voto'])?></span>
+                                    <span class="rating1"><?=str_repeat("&#9733;", $row['voto'])?><?=str_repeat("&#9734;", 5-$row['voto'])?></span>
                                 </div>
                                 <?php echo'
                                 <div class="row">
@@ -225,5 +220,25 @@
             </script>';
             ?>
         </div>
+        <script>
+function movieSelected(movieId,movieTitle) {
+  // la session storage si cancella appena si chiude la tab / pagina.
+  // var movieId= movie.id;
+  sessionStorage.setItem('title', movieTitle);
+  console.log(movieTitle);
+  $.ajax({
+    type: 'POST',
+    url: 'jsphp.php',
+    data: {'movie': movieId,'title':movieTitle}
+  });
+
+
+  sessionStorage.setItem('movieId', movieId);
+  window.location.href = 'film.php';
+  
+
+  return false;
+}
+      </script>
     </body>
 </html>

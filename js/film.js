@@ -28,7 +28,8 @@ function getMovie() {
             <li class="list-group-item"><strong>Generi:</strong> ${genres}</li>
             <li class="list-group-item"><strong>Data di rilascio:</strong> ${movie.release_date}</li>
             <li class="list-group-item"><strong>Indice Popolarita' TMDB:</strong> ${movie.popularity}</li>
-            <li class="list-group-item"><strong>Budget:</strong> ${movie.budget} $</li>
+            <li class="list-group-item"><strong>Budget:  </strong> ${movie.budget} $</li>
+            <li class="list-group-item"><strong>Incasso:  </strong> ${movie.revenue} $</li>
             <li class="list-group-item"><strong>Compagnia principale:</strong> ${compagnia}</li>
             <li class="list-group-item"><strong>Link IMDB:</strong> <a href="https://www.imdb.com/title/${movie.imdb_id}">${movie.title}</a></li>
 

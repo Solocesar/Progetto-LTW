@@ -46,6 +46,18 @@
                 $ret = pg_query($dbconn, $sql);
                 
             } 
+            if (isset($_POST['password2'])&&!empty($_POST['password2'])){
+                if (strlen($_POST["password2"]) < 8) {
+                    $_SESSION['message'] = "la password deve contenere almeno 8 caratteri ed un numero";
+                }
+                elseif(!preg_match("#[0-9]+#",$_POST["password2"])) {
+                    $_SESSION['message'] = "la password deve contenere almeno 8 caratteri ed un numero";
+                }
+                else{
+                $sql = "UPDATE user1 SET password = '".md5($_POST['password2'])."' WHERE id='".$_SESSION['id']."'" ;
+                $ret = pg_query($dbconn, $sql);
+                }
+            } 
 
             if (isset($_POST['textarea'])&&!empty($_POST['textarea'])){
                 $sql = "UPDATE user1 SET bio = '".$_POST['textarea']."' WHERE id='".$_SESSION['id']."'" ;
@@ -124,6 +136,18 @@
                                     <li class="list-group-item"><h5>Password:</h5> <input type="password" name="password2" size="25" placeholder="inserisci una nuova password"> </li>
                                     <li class="list-group-item"><h5>Biografia:</h5> <textarea class="textarea" name="textarea" rows="4" cols="50" maxlength="500" placeholder="Inserisci una bio"></textarea> </li>
                                     <li class="list-group-item"><h5>Foto: </h5><input type="url" name= "photo2" size="25" placeholder="inserire l'url di un'immagine" > </li>
+                                    
+                                <?php
+                                    if (isset($_SESSION['message']))
+                                        {
+                                            echo'
+                                            <div id="error" class="alert alert-danger" role="alert">
+                                                '.$_SESSION['message'].'
+                                            </div>';
+                                        
+                                            unset($_SESSION['message']);
+                                        }
+                                ?>
     
                                     
                                 </div>

@@ -1,14 +1,23 @@
 <?php
 $dbconn= pg_connect("host=localhost dbname=filmshare user=postgres password=giorno99");
 if(isset($_POST['submit1'])&&!empty($_POST['submit1'])){
-    
-    $hashpassword = md5($_POST['pwd1']);
+    $query= "SELECT email FROM user1";
+    $result= pg_query($query) or die ( "Query failed: ". pg_lasterror());
+    $emails= array();
+    while ( $line = pg_fetch_array ( $result, null, PGSQL_ASSOC)) {
+        foreach( $line as $col_value) {
+            array_push($emails,  $col_value);
+        }
+    }
+
+    if(in_array($_POST['email1'],$emails)) {
+        $hashpassword = md5($_POST['pwd1']);
     $sql ="SELECT *FROM user1 WHERE email = '".pg_escape_string($_POST['email1'])."' AND password ='".$hashpassword."'";
     $data = pg_query($dbconn,$sql); 
     $login_check = pg_num_rows($data);
     $id1="SELECT id FROM user1 WHERE email = '".pg_escape_string($_POST['email1'])."' ";
+
     $id= pg_fetch_row(pg_query($dbconn,$id1))[0]; 
-    echo $id;
     if($login_check > 0){ 
         session_start();
         $_SESSION['id'] = $id;
@@ -17,6 +26,9 @@ if(isset($_POST['submit1'])&&!empty($_POST['submit1'])){
         
         $_SESSION['message'] = 'email o password sbagliati';
     }
+    } 
+    else{$_SESSION['message'] = 'email o password sbagliati'; }
+    
 }
 ?>
 

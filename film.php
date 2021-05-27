@@ -16,6 +16,13 @@ if(isset($_SESSION['id'],$_POST['rating'],$_POST['content'])){
       'timestamp1'=>date("Y-m-d H:i",time()));
   pg_insert($dbconn,'review',$toinsert);
 }
+if(isset($_POST['filmPost'])&&!empty($_POST['filmPost'])){
+            
+  $_SESSION['film'] =$_POST['filmPost'];
+  echo $_POST['filmPost'];
+  // $_SESSION['title'] =$_POST['filmPost'];
+  // header('Location: film.php');
+}
 if (isset($_POST['likeB'])&&!empty($_POST['likeB'])){
 
   $query= "SELECT iduser FROM like1 WHERE idreview ='". $_POST['likeB']."'";
@@ -133,10 +140,6 @@ if (isset($_POST['likeB'])&&!empty($_POST['likeB'])){
     getMovie()
     getTrailer()
   </script>
-  <!-- Footer  -->
-  <footer >
-    <p>© Film Share</p>
-  </footer>
 </body>
 
 </html>

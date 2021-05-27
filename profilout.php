@@ -185,13 +185,12 @@
                                 echo '
                                     <div id="card" class="card recensione" style="width: 33rem;">
                                         <div class="card-body">
-                                            <h5 class="card-title">'. $datas1[7] .'</h5>
-                                            <p class="card-text">'. $datas1[3] .'</p>
+                                        <button value= '.  $datas1[2] .' class="btn btn-outline-dark bottonefilm"  name="filmPost" onclick="movieSelected('. $datas1[2] .',\''. $datas1[7] .'\')"><strong> '. $datas1[7] .'</strong></button>                                            <p class="card-text">'. $datas1[3] .'</p>
 
                                             ';?>
 
                                             <div class="stars">
-                                                <span class="rating1"><?=str_repeat("&#9733;", $datas1[0])?><?=str_repeat("&#9734;", 10-$datas1[0])?></span>
+                                                <span class="rating1"><?=str_repeat("&#9733;", $datas1[0])?><?=str_repeat("&#9734;", 5-$datas1[0])?></span>
                                                 
                                             
                                             </div>
@@ -246,9 +245,26 @@
                 ?>
             </div>
        
-             <!-- Footer  -->
-  <footer>
-    <p>© Film Share</p>
-  </footer>
+
+  <script>
+function movieSelected(movieId,movieTitle) {
+  // la session storage si cancella appena si chiude la tab / pagina.
+  // var movieId= movie.id;
+  sessionStorage.setItem('title', movieTitle);
+  console.log(movieTitle);
+  $.ajax({
+    type: 'POST',
+    url: 'jsphp.php',
+    data: {'movie': movieId,'title':movieTitle}
+  });
+
+
+  sessionStorage.setItem('movieId', movieId);
+  window.location.href = 'film.php';
+  
+
+  return false;
+}
+      </script>
     </body>
 </html>
