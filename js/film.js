@@ -32,16 +32,14 @@ function getMovie() {
           </ul>
         </div>
       </div>
-      <div class="card my-4">
+      <div class="card trama my-5">
         <h3 class="card-title">Trama</h3>
         <div class="card-text">${movie.overview}</div>
       </div>
 
-      <div class="btn-toolbar">
-        <a href="index.html" class="btn btn-warning">Torna Indietro</a>   
-        
-        <button type="button" class="btn btn-primary mostraTrailer" onclick="hideShowTrailers()">Mostra/Nascondi trailer</button>  
-        <button type="button" id="recensioneModal" class="btn btn-primary recensioneModal" data-bs-toggle="modal" data-bs-target="#exampleModal">Recensione modale</button>        
+      <div class="buttons">  
+        <button type="button" class="btn btn-primary md-2 mostraTrailer" onclick="hideShowTrailers()">Mostra/Nascondi trailer</button>  
+        <button type="button" id="recensioneModal" class="btn btn-primary  recensioneModal" data-bs-toggle="modal" data-bs-target="#exampleModal">Scrivi una recensione</button>        
           
       </div>
     

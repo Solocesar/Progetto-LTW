@@ -57,10 +57,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="css/profilout.css">
         <script src="https://kit.fontawesome.com/6d65c527da.js" crossorigin="anonymous"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="js/jquery-3.6.0.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/profilout.css">
     </head>
     <script src="js/jquery-3.6.0.js"></script>
     <body> 
@@ -76,10 +79,10 @@
                     </button>
                     <div class="navbar-collapse collapse" id="navbarCollapse" >
                         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Write a review</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php">Scrivi una recensione</a></li>
                             <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="homeRedirect.php">Profile</a></li>
-                            <li class="nav-item"><a class="nav-link" href="impostazioni.php">Profile Settings</a></li>
+                            <li class="nav-item"><a class="nav-link" href="homeRedirect.php">Profilo</a></li>
+                            <li class="nav-item"><a class="nav-link" href="impostazioni.php">Impostazioni</a></li>
                             <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
                         </ul>
                     </div>
@@ -180,7 +183,7 @@
                                 $queryLike= pg_query($dbconn, "SELECT * FROM like1 WHERE idreview='".$datas1[1]."'");
                                 $likes= pg_num_rows($queryLike);
                                 echo '
-                                    <div id="card" class="card" style="width: 33rem;">
+                                    <div id="card" class="card recensione" style="width: 33rem;">
                                         <div class="card-body">
                                             <h5 class="card-title">'. $datas1[7] .'</h5>
                                             <p class="card-text">'. $datas1[3] .'</p>
@@ -211,24 +214,41 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center">
+            <div class="card noamici mx-auto" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">Non hai ancora recensioni!</h5>
+                    <p class="card-text">Inizia a scriverne di nuove</p>
+                    <div class="d-flex justify-content-center"> <a href="index.php" class="btn btn-primary">Pagina film</a></div>
+                
+                </div>
+            </div>
                 <?php
                 echo ' 
                     <button id="load" type="button" class="btn btn-primary">Mostra le recensioni</button>  
                     <script type="text/javascript">
+                    if ($(".recensione").length>0){
                         $(function(){
-                        $("#card").slice(0, 0).show(); // select the first ten
+                        $("#load").show();
+                        $(".recensione").slice(0, 0).show(); // select the first ten
                         $("#load").click(function(e){ // click event for load more
                             e.preventDefault();
-                            $("div:hidden").slice(0, 15).show(); // select next 10 hidden divs and show them
-                            if($("div:hidden").length == 0){ // check if any hidden divs still exist
+                            $(".recensione:hidden").slice(0, 5).show(); // select next 5 hidden divs and show them
+                            if($(".recensione:hidden").length == 0){ // check if any hidden divs still exist
                                 $("#load").hide();
                             }
                         });
                         });
+                    }
+                    else{ 
+                        $(".noamici").show();
+                    }
                     </script>';
                 ?>
             </div>
        
-           
+             <!-- Footer  -->
+  <footer>
+    <p>© Film Share</p>
+  </footer>
     </body>
 </html>

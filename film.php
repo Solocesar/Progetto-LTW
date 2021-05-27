@@ -1,7 +1,9 @@
 <?php
 session_start();
 $dbconn= pg_connect("host=localhost dbname=filmshare user=postgres password=giorno99");
-
+if(!isset($_SESSION['id'])){
+  header('Location: login.php');
+}
 if(isset($_SESSION['id'],$_POST['rating'],$_POST['content'])){
   // se hanno inviato i dati della recensione inserirla nel database
   $toinsert = array(
@@ -44,7 +46,7 @@ if (isset($_POST['likeB'])&&!empty($_POST['likeB'])){
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <script src="https://kit.fontawesome.com/6d65c527da.js" crossorigin="anonymous"></script>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="js/jquery-3.6.0.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -67,29 +69,26 @@ if (isset($_POST['likeB'])&&!empty($_POST['likeB'])){
       </button>
       <div class="navbar-collapse collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="profilout.php">Profilo</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php">Scrivi una recensione</a></li>
+        <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="homeRedirect.php">Profilo</a></li>
+        <li class="nav-item"><a class="nav-link" href="impostazioni.php">Impostazioni</a></li>
+        <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
         </ul>
-        <!-- <form class="d-flex">
-          <input class="form-control me-2" id="searchText" type="search" placeholder="Titolo Film" aria-label="Search"
-            required />
-          <button class="btn btn-outline-success" id="search" type="submit"><i class="fas fa-search"></i></button> -->
         </form>
       </div>
     </div>
   </nav>
 
   <div id="container" class="container">
-    <!-- Button trigger modal -->
+
 
     <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Scrivi una Recensione</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Scrivi una recensione</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -98,7 +97,7 @@ if (isset($_POST['likeB'])&&!empty($_POST['likeB'])){
     
         <label for="customRange2" class="form-label">Voto(1-5)</label>
         <input name="rating" type="range" class="form-range" min="0" max="5" id="customRange2">
-        <textarea class="form-control" rows="3" name="content" placeholder="Write your review here..." required></textarea>
+        <textarea class="form-control" rows="3" name="content" placeholder="Scrivi la tua recensione qui..." required></textarea>
         
     
       </div>
@@ -114,7 +113,7 @@ if (isset($_POST['likeB'])&&!empty($_POST['likeB'])){
     <div id="movie"></div>
     
     <div id="containerTrailer"></div>
-    <div class="reviews"></div>
+    <div class="reviews "></div>
     <script>
       const movieId = sessionStorage.getItem('movieId');
       fetch("reviews.php?movieId=" + movieId).then(response => response.text()).then(data => {
@@ -134,7 +133,7 @@ if (isset($_POST['likeB'])&&!empty($_POST['likeB'])){
     getTrailer()
   </script>
   <!-- Footer  -->
-  <footer class="footer mt-auto">
+  <footer >
     <p>© Film Share</p>
   </footer>
 </body>

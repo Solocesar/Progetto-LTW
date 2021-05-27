@@ -1,9 +1,11 @@
+
+<?php
+session_start();?>
 <!DOCTYPE html>
 
 <head>
   <meta charset="UTF-8">
   <title>Film Share</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <script src="https://kit.fontawesome.com/6d65c527da.js" crossorigin="anonymous"></script>
 
@@ -27,14 +29,22 @@
       </button>
       <div class="navbar-collapse collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="profilout.php">Profilo</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php">Scrivi una recensione</a></li>
+
+          <!-- <li class="nav-item"><a class="nav-link" href="profilout.php">Profilo</a></li> -->
+          <?php if(isset($_SESSION['id'])&&!empty($_SESSION['id'])){ echo ('       
+           <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="homeRedirect.php">Profilo</a></li>
+        <li class="nav-item"><a class="nav-link" href="impostazioni.php">Impostazioni</a></li>
+        <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li> ');}
+                      else { echo ('<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>');}
+          
+          ?>
+          
+          <!-- <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li> -->
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" id="searchText" type="search" placeholder="Titolo Film" aria-label="Search"
-            required />
+          <input class="form-control me-2" id="searchText" type="search" placeholder="Titolo Film" aria-label="Search" required />
           <button class="btn btn-outline-success" id="search" type="submit"><i class="fas fa-search"></i></button>
         </form>
       </div>

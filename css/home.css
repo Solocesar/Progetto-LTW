@@ -10,7 +10,7 @@ body{
     color: black;
 }
 
-.card{
+.recensione{
     margin-top: 50px;
     margin-bottom: 10px;
     display: none;
@@ -51,4 +51,12 @@ body{
 #load{
     margin-top: 30px;
     margin-bottom: 50px;
+    display: none;
   }
+
+.noamici{
+  display: none;
+}
+.space{
+  padding-top: 300px;;
+}

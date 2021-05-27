@@ -20,7 +20,11 @@ body {
   margin-top: 50px;
   margin-bottom: 10px;
   /* display: none; */
-  border-radius: 3px;
+/* border:none; */
+  
+}
+.trama{
+border:none;
   
 }
 .likeB {
@@ -35,3 +39,4 @@ body {
 i{
   cursor: pointer;
 }
+

@@ -49,9 +49,9 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <script src="https://kit.fontawesome.com/6d65c527da.js" crossorigin="anonymous"></script>
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"></script>
-        <script src="js/jquery-3.6.0.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/jquery-3.6.0.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 
         <link rel="stylesheet" type="text/css" href="css/home.css">
 
@@ -70,20 +70,31 @@
                 </button>
                 <div class="navbar-collapse collapse" id="navbarCollapse" >
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Write a review</a></li>
-                        <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="homeRedirect.php">Profile</a></li>
-                        <li class="nav-item"><a class="nav-link" href="impostazioni.php">Profile Settings</a></li>
-                        <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php">Scrivi una recensione</a></li>
+                            <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="homeRedirect.php">Profilo</a></li>
+                            <li class="nav-item"><a class="nav-link" href="impostazioni.php">Impostazioni</a></li>
+                            <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+        
+     
         <div class="container mt-4" >
         
+            <div class="space ">
+            <div class="card noamici mx-auto" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">Non hai ancora amici!</h5>
+                    <p class="card-text">Inizia a seguire nuove persone</p>
+                    <div class="d-flex justify-content-center"> <a href="index.php" class="btn btn-primary">Pagina film</a></div>
+                </div>
+            </div>
+            </div>
             <div class="row justify-content-center align-self-center">
-                
             
+        
                 <?php
                     $queryn= pg_query($dbconn, "SELECT id2 FROM friendship WHERE id1= '".$_SESSION['id']."'");
                     $reviews= array();
@@ -124,7 +135,7 @@
                     array_multisort($price, SORT_ASC, $reviews);
                     foreach ($reviews as $key => $row){
                         echo '
-                        <div class="card" style="width: 45rem;">
+                        <div class="card recensione" style="width: 45rem;">
                             <div class="card-body">
                                 <div id="inte" class="row"> 
                                     <div class="col-md-auto">
@@ -178,19 +189,27 @@
         </div>
         <div class="d-flex justify-content-center">
             <?php 
-            echo '
-            <button id="load" type="button" class="btn btn-primary">Mostra altre recensioni</button>  
+            
+            echo  ' 
+            
+
+            <button id="load" type="button" class="btn btn-primary">Mostra le recensioni</button>  
             <script type="text/javascript">
+            if ($(".recensione").length>0){
                 $(function(){
-                $(".card").slice(0, 5).show(); // select the first ten
+                $("#load").show();
+                $(".recensione").slice(0, 10).show(); // select the first ten
                 $("#load").click(function(e){ // click event for load more
                     e.preventDefault();
-                    $("div:hidden").slice(0, 60).show(); // select next 10 hidden divs and show them
-                    if($("div:hidden").length == 0){ // check if any hidden divs still exist
+                    $(".recensione:hidden").slice(0, 5).show(); // select next 5 hidden divs and show them
+                    if($(".recensione:hidden").length == 0){ // check if any hidden divs still exist
                         $("#load").hide();
                     }
                 });
-                });
+                });}
+                else{ 
+                    $(".noamici").show();
+                }
             </script>';
             ?>
         </div>

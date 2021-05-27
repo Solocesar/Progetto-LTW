@@ -43,7 +43,7 @@ body{
 i{
   cursor: pointer;
 }
-#card{
+.recensione{
   margin-top: 50px;
   margin-bottom: 20px;
   margin-right: 10px;
@@ -54,8 +54,22 @@ i{
 #load{
   margin-top: 30px;
   margin-bottom: 50px;
+  display: none;
 }
 
 .bottoni{
   margin-top: 10px;
+}
+.noamici{
+  display: none;
+}
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
