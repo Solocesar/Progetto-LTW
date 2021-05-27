@@ -23,6 +23,10 @@ if (isset($_SESSION['film'])){
     $reviews = pg_query($dbconn,"SELECT * FROM review WHERE filmid =$movieid ORDER BY timestamp1 DESC");
     $reviews = pg_fetch_all($reviews);
 
+    // per il voto 
+    $queryvoto ="SELECT AVG(rating) AS voto_medio, COUNT(*) AS total_reviews FROM review WHERE filmid =$movieid ";
+    $voton = pg_query($dbconn,$queryvoto);
+    $voto =pg_fetch_row($voton);
 }
 else {
   exit('Please provide the movie ID.');
@@ -32,7 +36,17 @@ else {
 
 ?>
 <!-- TODO: Completare css per le recensioni sotto i film e risolvere molteplici recensioni da parte dello stesso utente  -->
-<div class="row justify-content-center align-self-center">
+<div class="voto_medio">
+    <span class="num"><?=number_format($voto[0], 1)?></span>
+    <span class="stars"><?=str_repeat('&#9733;', round($voto[0]))?></span>
+    <span class="totale"><?=$voto[1]?> reviews</span>
+</div>
+<?php
+
+$query ='SELECT AVG(rating) AS overall_rating, COUNT(*) AS total_reviews FROM reviews WHERE filmid = ?' 
+
+?>
+
 <?php foreach ($reviews as $review): ?>
 
     <?php 
@@ -43,7 +57,7 @@ else {
             $likes= pg_num_rows($queryLike);
     ?>
 
-    <div class="card" style="width: 45rem;">
+    <div class="card recensione mx-2" style="width: 45rem;">
         <div class="card-body">
         <div id="inte" class="row"> 
             <div class="col-md-auto">
